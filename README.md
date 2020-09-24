@@ -9,6 +9,10 @@
 ## Project description and user needs
 (Week 2-3)
 
+As opposed to physical meetings or gatherings, participants do not have a spatial location relative to each other, i.e., there is only one “sound source” for 
+all speakers. This does not necessarily scale well. Especially in larger gatherings, people cannot naturally form groups by walking up to each other and start talking without disturbing the whole meeting. 
+How can this be mimicked in online meetings instead of artificial concepts like break-out rooms, but without making it too complex or “playful”?
+
     TODO
 Add a description of your project, based on your needfinding and brainstorming. Minimum answer the following questions: 
 - What are the problem the users are facing?
