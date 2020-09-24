@@ -3,8 +3,8 @@
   <img height="56" src="img/eth-sip-3l.png">     
 </p>
 
-# [Project name], Group [Group number]
-#### Student 1, Student 2, Student 3, Student 4, Student 5
+# Spatial Arrangement in Video Conferencing, Group 8
+#### Robin Schmidiger, Pascal Strebel, Lukas Hasler, Cedric Weibel
 
 ## Project description and user needs
 (Week 2-3)
