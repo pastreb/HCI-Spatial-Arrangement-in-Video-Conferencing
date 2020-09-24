@@ -4,7 +4,7 @@
 </p>
 
 # Spatial Arrangement in Video Conferencing, Group 8
-#### Robin Schmidiger,, Pascal Strebel, Lukas Stefan Heinz Hasler, Cedric Weibel
+#### Robin Schmidiger, Pascal Strebel, Lukas Stefan Heinz Hasler, Cedric Weibel
 
 ## Project description and user needs
 (Week 2-3)
