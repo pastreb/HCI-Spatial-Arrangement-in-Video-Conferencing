@@ -16,6 +16,9 @@ How can this be mimicked in online meetings instead of artificial concepts like 
 We used the following questions as guidelines for our interviews: [Interview Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf)
 
     TODO
+    
+    https://miro.com/app/board/o9J_kjg1ZWo=/
+    
 Add a description of your project, based on your needfinding and brainstorming. Minimum answer the following questions: 
 - What are the problem the users are facing?
 - What are the goals of the project?
