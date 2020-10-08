@@ -29,6 +29,12 @@ Include notes from your interviews and document your needfinding process
 (Weeks 2-4)
 
     TODO
+    PPT
+    https://docs.google.com/presentation/d/1ptLie0YxKRN8-z80uJLtywzf_cpD9aaw7GOBeu8HHJY/edit?usp=sharing
+    Personas
+    https://drive.google.com/drive/folders/1OVydpG71mDccEiDb1PC7JxnpEgzdoqyn?usp=sharing
+    Affinity Diagram
+    https://miro.com/app/board/o9J_kjg1ZWo=/
 Start with the key requirements/needs of the users.  
 Then list your initial ideas (min. 3) with a brief description.  
 Add a link to your [Miro Whiteboard](https://www.miro.com)  
