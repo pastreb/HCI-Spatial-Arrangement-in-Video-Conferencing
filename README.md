@@ -6,18 +6,24 @@
 # Spatial Arrangement in Video Conferencing, Group 8
 #### Robin Schmidiger, Pascal Strebel, Lukas Stefan Heinz Hasler, Cedric Weibel
 
-As opposed to physical meetings or gatherings, participants do not have a spatial location relative to each other, i.e., there is only one “sound source” for 
+As opposed to physical meetings or gatherings, participants do not have a spatial location relative to each other in video calls, i.e., there is only one “sound source” for 
 all speakers. This does not necessarily scale well. Especially in larger gatherings, people cannot naturally form groups by walking up to each other and start talking without disturbing the whole meeting. 
 How can this be mimicked in online meetings instead of artificial concepts like break-out rooms, but without making it too complex or “playful”?
 
 ## Project description and user needs
 (Week 2-3)
 
-We used the following questions as guidelines for our interviews: [Interview Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf)
+Ater a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. Each of us conducted two to three such interviews (protocols can be found here: [Protocols Cedric](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Cedric.pdf), [Protocols Lukas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Lukas.pdf), [Protocols Pascal](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Pascal.pdf), [Protocols Robin](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Robin.pdf)). 
 
-    TODO
-    
-    https://miro.com/app/board/o9J_kjg1ZWo=/
+This resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also accross all interviewees.
+
+As a takeaway, our most important **insights** were the following:
+- Most interviewees prefer a simle UI
+- The arrangement of participants should be up to the user in some way
+- Screen Sharing & File Sharing should be easier and support additional features
+- There should be a better permission/role system within a call
+
+This helped us create our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on https://miro.com/app/board/o9J_kjg1ZWo=/).    
     
 Add a description of your project, based on your needfinding and brainstorming. Minimum answer the following questions: 
 - What are the problem the users are facing?
