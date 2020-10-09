@@ -55,6 +55,31 @@ As a takeaway, our **most important insights** were the following:
 
 Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
 
+The Affinity diagram then helped us create our three Personas, which represent typical users:
+- Low-level User: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
+  - Has never used such technology
+  - User Scenario: 
+    - Since the pandemic began she can't visit her friends anymore
+    - They use Zoom to chat with each other and have a drink, when the children finally leave again for their afternoon classes
+    - Thankfully one of her friends'husbands works in IT, so they had him set it up for them
+    - If anything doesn't work, the only way she know how to get it running agin is by restarting the computer
+- Casual User: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
+  - Is an average tech-user
+  - User Scenario:
+    - Silvano has had a stressful day (again)
+    - Only one more meeting with his coworkers from China and the USA and he is done for the day
+    - He's eager to head home to his favourite sofa and watch his team win the footbull cup tonight
+    - Unfortunately, all participants are late again and he is the one to blame
+    - To his luck, the meeting is working properly and no other errors occur
+- Power User: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
+  - Studied Computer Science
+  - User Scenario:
+    - Rapha, as his freinds call him, uses Discord to talk to the other players on their minecraft server
+    - He has been streaming for 3 hours straight and made a decent amount of money through donations
+    - Currently, they are working on a big project, and they are trying to coordinate with 24 different people
+    - He grabs an energy drink
+    - It's a bit confusing with everyone in the same voice channel, even though people are all over the map
+
 In another brainstorming phase, we came up with as many ideas as possible. Here are some examples:
 - Stack-based view of participants, depending on:
   - Join order
@@ -95,7 +120,7 @@ In another brainstorming phase, we came up with as many ideas as possible. Here 
   - Everybody appears as blob
   - “Walk around” using arrow keys
   - People that are closer appear louder
-  - Being able to “eat” others (as in (agario)[https://agar.io/])
+  - Being able to “eat” others (as in [agario](https://agar.io/))
   - Killstreaks?
 - Being rewarded for answering questions
   - Use rewards to gain something
@@ -115,11 +140,21 @@ The winners (a little more in detail) were:
     - Share files/screen
     - Access different breakout rooms 
   - Lower level participants go through higher level participants to ask questions or get permissions
-
-
-Then list your initial ideas (min. 3) with a brief description.  
-Upload the PPT presentation to the "deliverables" folder and include the link here.  
-Optional: in this part you can document ideation and prototyping process (e.g. describe personas, show affinity clusters, etc. )  
+- [User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png)
+  - Participants appear as bubbles on a canvas (the shape doesn’t really matter)
+  - Users can move and scale those bubbles to make their own arrangement
+  - Based on the “rank” of a user, it’s bubble initially appears larger
+  - The state of any participant (muted, speaking, … ) changes the corresponding bubble’s appearance
+  - Facecam and screen share are displayed in the bubble
+    - This might cause it to change its shape
+  - Groups could potentially be displayed as clusters connected by a “group bubble”
+- [Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)
+  - More of a fun idea
+  - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys
+  - The voice of people that are closer appears louder
+  - It often happens that one gets bored when a video call becomes too long
+    - This idea might help in staying focused and prevent people from doing something else
+    - It also helps detecting inactive users 
     
 ## Evaluation
 (Weeks 5-7)
