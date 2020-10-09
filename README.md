@@ -55,15 +55,15 @@ As a takeaway, our **most important insights** were the following:
 
 Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
 
-The Affinity diagram then helped us create our three Personas, which represent typical users:
-- Low-level User: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
+The Affinity diagram then helped us create our three **Personas**, which represent typical users:
+- **Low-level User**: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
   - Has never used such technology
   - User Scenario: 
     - Since the pandemic began she can't visit her friends anymore
     - They use Zoom to chat with each other and have a drink, when the children finally leave again for their afternoon classes
     - Thankfully one of her friends' husbands works in IT, so they had him set it up for them
     - If anything doesn't work, the only way she knows how to get it running again is by restarting the computer
-- Casual User: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
+- **Casual User**: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
   - Is an average tech-user
   - User Scenario:
     - Silvano has had a stressful day (again)
@@ -71,7 +71,7 @@ The Affinity diagram then helped us create our three Personas, which represent t
     - He's eager to head home to his favourite sofa and watch his team win the football cup tonight
     - Unfortunately, all participants are late again and he is the one to blame
     - To his luck, the meeting is working properly and no other errors occur
-- Power User: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
+- **Power User**: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
   - Studied Computer Science
   - User Scenario:
     - Rapha, as his friends call him, uses Discord to talk to the other players on their minecraft server
@@ -80,7 +80,7 @@ The Affinity diagram then helped us create our three Personas, which represent t
     - He grabs an energy drink
     - It's a bit confusing with everyone in the same voice channel, even though people are all over the map
 
-In another brainstorming phase, we came up with as many ideas as possible. Here are some examples:
+In another brainstorming phase, we came up with as many **ideas** as possible. Here are some examples:
 - Stack-based view of participants, depending on:
   - Join order
   - Priority
@@ -131,7 +131,7 @@ In another brainstorming phase, we came up with as many ideas as possible. Here 
 
 For the [Presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Ideation_Presentation.pdf), we tried to choose three ideas that most represent all our different approaches in order to get feedback for any path we could take. 
 The winners (a little more in detail) were:
-- Level-based Permissions
+- **Level-based Permissions**
   - Give different levels to the participants in the call
   - Different levels give different permissions
   - Example permissions:
@@ -140,7 +140,7 @@ The winners (a little more in detail) were:
     - Share files/screen
     - Access different breakout rooms 
   - Lower level participants go through higher level participants to ask questions or get permissions
-- [User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png)
+- **[User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png)**
   - Participants appear as bubbles on a canvas (the shape doesn’t really matter)
   - Users can move and scale those bubbles to make their own arrangement
   - Based on the “rank” of a user, it’s bubble initially appears larger
@@ -148,7 +148,7 @@ The winners (a little more in detail) were:
   - Facecam and screen share are displayed in the bubble
     - This might cause it to change its shape
   - Groups could potentially be displayed as clusters connected by a “group bubble”
-- [Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)
+- **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea
   - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys
   - The voice of people that are closer appears louder
