@@ -13,7 +13,7 @@ How can this be mimicked in online meetings instead of artificial concepts like 
 ## Project description and user needs
 (Week 2-3)
 
-Ater a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
+After a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
 
 In our eyes, the key questions are:
 - If you had to do some group work online with 12 people, how would you do that?
@@ -26,7 +26,7 @@ Each of us conducted two to three such interviews (protocols can be found here: 
 ## Ideation
 (Weeks 2-4)
 
-The interviews resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also accross all interviewees.
+The interviews resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also across all interviewees.
 
 These can be summed up:
 - Simpleness:
@@ -36,16 +36,16 @@ These can be summed up:
   - In terms of the layout, less is often more. There should not be too much info on the screen at once to not overwhelm the basic user.
 - Multimedia:
   - Audio is definitely more important than video.
-  - Facial expressions and reactions are an important part of an online conversation. Some users want the facecam to be always visible, whereas size and placement should be up to the the individual user.
+  - Facial expressions and reactions are an important part of an online conversation. Some users want the facecam to be always visible, whereas size and placement should be up to the individual user.
   - Sharing multiple screens at the same time would be appreciated mostly by business and student users alike.
-  - There should be a siimple function for data exchange.
+  - There should be a simple function for data exchange.
   - Bilateral talks between "seatmates" do not really seem to be appreciated over all interviewees. Not being distracted was often viewed as a good thing. A simple text chat would be sufficient.
   - In some interviews, the wish to be able to mute individuals came up.
 - Hierarchy:
   - Many users are kind of lost when they are put into breakout rooms.
   - Depending on their job in a video call, numerous users would like to have clear permissions.
   - Within bigger groups, a clear hierarchy should be established, where each user is assigned to a different priority.
-  - Especially student users would like an improved "rasing hand" tool since the host does not always notices an answer.
+  - Especially student users would like an improved "raising hand" tool since the host does not always notices an answer.
 
 As a takeaway, our **most important insights** were the following:
 - Most interviewees prefer a simple UI
@@ -61,20 +61,20 @@ The Affinity diagram then helped us create our three Personas, which represent t
   - User Scenario: 
     - Since the pandemic began she can't visit her friends anymore
     - They use Zoom to chat with each other and have a drink, when the children finally leave again for their afternoon classes
-    - Thankfully one of her friends'husbands works in IT, so they had him set it up for them
-    - If anything doesn't work, the only way she know how to get it running agin is by restarting the computer
+    - Thankfully one of her friends' husbands works in IT, so they had him set it up for them
+    - If anything doesn't work, the only way she knows how to get it running again is by restarting the computer
 - Casual User: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
   - Is an average tech-user
   - User Scenario:
     - Silvano has had a stressful day (again)
-    - Only one more meeting with his coworkers from China and the USA and he is done for the day
-    - He's eager to head home to his favourite sofa and watch his team win the footbull cup tonight
+    - Only one more meeting with his co-workers from China and the USA and he is done for the day
+    - He's eager to head home to his favourite sofa and watch his team win the football cup tonight
     - Unfortunately, all participants are late again and he is the one to blame
     - To his luck, the meeting is working properly and no other errors occur
 - Power User: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
   - Studied Computer Science
   - User Scenario:
-    - Rapha, as his freinds call him, uses Discord to talk to the other players on their minecraft server
+    - Rapha, as his friends call him, uses Discord to talk to the other players on their minecraft server
     - He has been streaming for 3 hours straight and made a decent amount of money through donations
     - Currently, they are working on a big project, and they are trying to coordinate with 24 different people
     - He grabs an energy drink
