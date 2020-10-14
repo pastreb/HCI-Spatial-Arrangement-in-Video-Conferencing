@@ -171,6 +171,7 @@ The winners (a little more in detail) were:
   - Facecam and screen share are displayed in the bubble
     - This might cause it to change its shape
   - Groups could potentially be displayed as clusters connected by a “group bubble”
+
 ![User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png "User-specific Conference Arrangement")
 - **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea
@@ -179,6 +180,7 @@ The winners (a little more in detail) were:
   - It often happens that one gets bored when a video call becomes too long
     - This idea might help in staying focused and prevent people from doing something else
     - It also helps detecting inactive users 
+
 ![Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png "Agar.io Styled Arrangement")
     
 ### First Prototypes <a name="prototypes"></a>
