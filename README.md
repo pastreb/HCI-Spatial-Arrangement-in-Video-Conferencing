@@ -11,9 +11,19 @@ all speakers. This does not necessarily scale well. Especially in larger gatheri
 How can this be mimicked in online meetings instead of artificial concepts like break-out rooms, but without making it too complex or “playful”?
 
 ## Table of Contents
-[Ideation](#ideation)
+- [Project Description and User Needs](#description)
+- [Ideation](#ideation)
+  - [Needs](#needs)
+  - [Insights](#insights)
+  - [Affinity Diagram](#affinity_diagram)
+  - [Personas](#personas)
+  - [Brainstorming Ideas](#brainstorming)
+  - [Presentation](#presentation)
+  - [First Prototypes](#prototypes)
+- [Evaluation](#evaluation)
+- [Prototype](#prototype)
 
-## Project Description and User Needs
+## Project Description and User Needs <a name="description"></a>
 (Week 2-3)
 
 After a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
@@ -29,7 +39,7 @@ Each of us conducted two to three such interviews (protocols can be found here: 
 ## Ideation <a name="ideation"></a>
 (Weeks 2-4)
 
-### Needs
+### Needs <a name="needs"></a>
 The interviews resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also across all interviewees.
 
 These can be summed up:
@@ -51,21 +61,21 @@ These can be summed up:
   - Within bigger groups, a clear hierarchy should be established, where each user is assigned to a different priority.
   - Especially student users would like an improved "raising hand" tool since the host does not always notices an answer.
 
-### Insights
+### Insights <a name="insights"></a>
 As a takeaway, our **most important insights** were the following:
 - Most interviewees prefer a simple UI
 - The arrangement of participants should be up to the user in some way
 - Screen Sharing & File Sharing should be easier and support additional features
 - There should be a better permission/role system within a call
 
-### Affinity Diagram
+### Affinity Diagram <a name="affinity_diagram"></a>
 Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
 
 ![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")
 
 We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
 
-### Personas
+### Personas <a name="personas"></a>
 The Affinity diagram then helped us create our three **Personas**, which represent typical users:
 - **Low-level User**: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
   - Has never used such technology
@@ -91,7 +101,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - He grabs an energy drink
     - It's a bit confusing with everyone in the same voice channel, even though people are all over the map
 
-### Brainstorming Ideas
+### Brainstorming Ideas <a name="brainstorming"></a>
 In another brainstorming phase, we came up with as many **ideas** as possible. Here are some examples:
 - Stack-based view of participants, depending on:
   - Join order
@@ -141,7 +151,7 @@ In another brainstorming phase, we came up with as many **ideas** as possible. H
   - Should prevent questions from not being answered or ignored
   - FIFO queue (fair)
 
-### Presentation
+### Presentation <a name="presentation"></a>
 For the [Presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Ideation_Presentation.pdf), we tried to choose three ideas that most represent all our different approaches in order to get feedback for any path we could take. 
 The winners (a little more in detail) were:
 - **Level-based Permissions**
@@ -171,17 +181,19 @@ The winners (a little more in detail) were:
     - It also helps detecting inactive users 
   ![Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png "Agar.io Styled Arrangement")
     
-### Prototypes
+### First Prototypes <a name="prototypes"></a>
+While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
+- **[Prototype Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Agario_Pascal.mp4)
 
 
-## Evaluation
+## Evaluation <a name="evaluation"></a>
 (Weeks 5-7)
 
     TODO
 Describe your approach for evaluating your low-fi prototypes, present your results and your conclusion.  
 Optional: in this part you can also document the prototyping process: show different iterations, as well as failed ideas  
 
-## Prototype
+## Prototype <a name="prototype"></a>
 (Weeks 8-14)
 
     TODO
