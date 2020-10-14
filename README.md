@@ -10,7 +10,10 @@ As opposed to physical meetings or gatherings, participants do not have a spatia
 all speakers. This does not necessarily scale well. Especially in larger gatherings, people cannot naturally form groups by walking up to each other and start talking without disturbing the whole meeting. 
 How can this be mimicked in online meetings instead of artificial concepts like break-out rooms, but without making it too complex or “playful”?
 
-## Project description and user needs
+## Table of Contents
+[Ideation](#ideation)
+
+## Project Description and User Needs
 (Week 2-3)
 
 After a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
@@ -23,9 +26,10 @@ In our eyes, the key questions are:
 
 Each of us conducted two to three such interviews (protocols can be found here: [Protocols Cedric](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Cedric.pdf), [Protocols Lukas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Lukas.pdf), [Protocols Pascal](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Pascal.pdf), [Protocols Robin](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Robin.pdf)).      
 
-## Ideation
+## Ideation <a name="ideation"></a>
 (Weeks 2-4)
 
+### Needs
 The interviews resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also across all interviewees.
 
 These can be summed up:
@@ -47,14 +51,21 @@ These can be summed up:
   - Within bigger groups, a clear hierarchy should be established, where each user is assigned to a different priority.
   - Especially student users would like an improved "raising hand" tool since the host does not always notices an answer.
 
+### Insights
 As a takeaway, our **most important insights** were the following:
 - Most interviewees prefer a simple UI
 - The arrangement of participants should be up to the user in some way
 - Screen Sharing & File Sharing should be easier and support additional features
 - There should be a better permission/role system within a call
 
-Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
+### Affinity Diagram
+Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
 
+![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")
+
+We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
+
+### Personas
 The Affinity diagram then helped us create our three **Personas**, which represent typical users:
 - **Low-level User**: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
   - Has never used such technology
@@ -80,6 +91,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - He grabs an energy drink
     - It's a bit confusing with everyone in the same voice channel, even though people are all over the map
 
+### Brainstorming Ideas
 In another brainstorming phase, we came up with as many **ideas** as possible. Here are some examples:
 - Stack-based view of participants, depending on:
   - Join order
@@ -129,6 +141,7 @@ In another brainstorming phase, we came up with as many **ideas** as possible. H
   - Should prevent questions from not being answered or ignored
   - FIFO queue (fair)
 
+### Presentation
 For the [Presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Ideation_Presentation.pdf), we tried to choose three ideas that most represent all our different approaches in order to get feedback for any path we could take. 
 The winners (a little more in detail) were:
 - **Level-based Permissions**
@@ -148,6 +161,7 @@ The winners (a little more in detail) were:
   - Facecam and screen share are displayed in the bubble
     - This might cause it to change its shape
   - Groups could potentially be displayed as clusters connected by a “group bubble”
+  ![User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png "User-specific Conference Arrangement")
 - **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea
   - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys
@@ -155,7 +169,11 @@ The winners (a little more in detail) were:
   - It often happens that one gets bored when a video call becomes too long
     - This idea might help in staying focused and prevent people from doing something else
     - It also helps detecting inactive users 
+  ![Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png "Agar.io Styled Arrangement")
     
+### Prototypes
+
+
 ## Evaluation
 (Weeks 5-7)
 
