@@ -187,6 +187,7 @@ The winners (a little more in detail) were:
 While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
 - **[Prototype Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Agario_Pascal.mp4)**
 - **[Prototype Level based permission System](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Level-based-system.pdf)**
+- **[Prototype User-specific conference arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Arrangement_Robin.mp4)**
 
 ## Evaluation <a name="evaluation"></a>
 (Weeks 5-7)
