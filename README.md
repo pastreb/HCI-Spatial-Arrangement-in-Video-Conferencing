@@ -19,8 +19,9 @@ How can this be mimicked in online meetings instead of artificial concepts like 
   - [Personas](#personas)
   - [Brainstorming Ideas](#brainstorming)
   - [Presentation](#presentation)
-  - [First Prototypes](#prototypes)
+  - [Lowfi Prototypes](#lowfi_prototypes)
 - [Evaluation](#evaluation)
+  - [Midfi Prototypes](#midfi_prototypes)
 - [Prototype](#prototype)
 
 ## Project Description and User Needs <a name="description"></a>
@@ -183,7 +184,7 @@ The winners (a little more in detail) were:
 
 ![Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png "Agar.io Styled Arrangement")
     
-### First Prototypes <a name="prototypes"></a>
+### Lowfi Prototyping <a name="lowfi_prototypes"></a>
 While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
 - **[Prototype Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Agario_Pascal.mp4)**
 - **[Prototype Level based permission System](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Level-based-system.pdf)**
@@ -192,6 +193,11 @@ While trying to implement some of the feedback we received for the presentation,
 
 ## Evaluation <a name="evaluation"></a>
 (Weeks 5-7)
+
+### Midfi Prototyping <a name="midfi_prototypes"></a>
+Based on the feedback we received, we decided to merge the ideas of the level based permission system and the user-specific conference arrangement in some ways. This led to the creation of the following two midfi prototypes:
+- [Prototype 1](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Midfi_Prototype_1.xd)
+- [Prototype 2](https://xd.adobe.com/view/99615182-12a9-434b-8e44-f15a70c31556-cc32/grid)
 
     TODO
 Describe your approach for evaluating your low-fi prototypes, present your results and your conclusion.  
