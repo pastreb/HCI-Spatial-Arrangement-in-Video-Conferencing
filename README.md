@@ -22,6 +22,7 @@ How can this be mimicked in online meetings instead of artificial concepts like 
   - [Lowfi Prototypes](#lowfi_prototypes)
 - [Evaluation](#evaluation)
   - [Midfi Prototypes](#midfi_prototypes)
+  - [User Study](#user_study)
 - [Prototype](#prototype)
 
 ## Project Description and User Needs <a name="description"></a>
@@ -196,12 +197,20 @@ While trying to implement some of the feedback we received for the presentation,
 
 ### Midfi Prototyping <a name="midfi_prototypes"></a>
 Based on the feedback we received, we decided to merge the ideas of the level based permission system and the user-specific conference arrangement in some ways. This led to the creation of the following two midfi prototypes:
-- [Prototype 1](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Midfi_Prototype_1.xd)
+- [Prototype 1](https://xd.adobe.com/view/2b2d7ce0-21a7-4684-ac29-a956077592ca-7e7e/grid)
 - [Prototype 2](https://xd.adobe.com/view/99615182-12a9-434b-8e44-f15a70c31556-cc32/grid)
 
-    TODO
-Describe your approach for evaluating your low-fi prototypes, present your results and your conclusion.  
-Optional: in this part you can also document the prototyping process: show different iterations, as well as failed ideas  
+### User Study <a name="user_study"></a>
+For conducting the user study, we created a [Study Protocol](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Protocol.pdf) and a [Rating Form](https://docs.google.com/forms/d/e/1FAIpQLSebr7I3G2s7by578MRwiXRlNRDSrXhL84pf3HPX7f1ZPkRodQ/viewform).
+
+The project is explained to the participant as follows: 
+“*We want to adapt the user interface of video call tools such that they become easier to handle while providing more functionality. To do so, we created two prototypes that we would like to assess now. The prototypes are very basic and do not really implement the functionality but for now we just pretend as if they did so. Subsequently, you will receive some simple tasks for each of the prototypes. As soon as you complete a task, the message “Good Job” appears on the screen.*”
+
+In summary, each participant is asked to perform the following taks on both prototypes:
+- Create a room and let other people join.
+- Change another user's level.
+- Change the position and size of another user.
+- Create a breakout-room, join it and share your screen.
 
 ## Prototype <a name="prototype"></a>
 (Weeks 8-14)
