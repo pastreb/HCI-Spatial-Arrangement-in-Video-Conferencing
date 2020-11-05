@@ -130,7 +130,7 @@ The winners (a little more in detail) were:
     - Share files/screen
     - Access different breakout rooms 
   - Lower level participants go through higher level participants to ask questions or get permissions
-- **[User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png)**
+- **[User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png)**
   - Participants appear as bubbles on a canvas (the shape doesn’t really matter)
   - Users can move and scale those bubbles to make their own arrangement
   - Based on the “rank” of a user, it’s bubble initially appears larger
@@ -140,7 +140,7 @@ The winners (a little more in detail) were:
   - Groups could potentially be displayed as clusters connected by a “group bubble”
   <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png" alt="User-specific Conference Arrangement" width="300"/>
 
-- **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)**
+- **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea
   - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys
   - The voice of people that are closer appears louder
