@@ -87,7 +87,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - They use Zoom to chat with each other and have a drink, when the children finally leave again for their afternoon classes
     - Thankfully one of her friends' husbands works in IT, so they had him set it up for them
     - If anything doesn't work, the only way she knows how to get it running again is by restarting the computer
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Karen.png" alt="Karen Smith" width="500"/>
+    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Karen.png" alt="Karen Smith" width="80"/>
 - **Casual User**: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
   - Is an average tech-user
   - User Scenario:
@@ -96,7 +96,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - He's eager to head home to his favourite sofa and watch his team win the football cup tonight
     - Unfortunately, all participants are late again and he is the one to blame
     - To his luck, the meeting is working properly and no other errors occur
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Silvano.png" alt="Silvano da Silva Jovanotti" width="500"/>
+    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Silvano.png" alt="Silvano da Silva Jovanotti" width="80"/>
 - **Power User**: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
   - Studied Computer Science
   - User Scenario:
@@ -105,7 +105,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - Currently, they are working on a big project, and they are trying to coordinate with 24 different people
     - He grabs an energy drink
     - It's a bit confusing with everyone in the same voice channel, even though people are all over the map
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Raphael.png" alt="Raphael Yamamoto" width="500"/>
+    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Raphael.png" alt="Raphael Yamamoto" width="120"/>
 
 ### Brainstorming Ideas <a name="brainstorming"></a>
 In another brainstorming phase, we came up with as many [Ideas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Brainstorming.pdf) as possible. Here are some examples:
