@@ -23,7 +23,7 @@ How can this be mimicked in online meetings instead of artificial concepts like 
 - [Evaluation](#evaluation)
   - [Midfi Prototypes](#midfi_prototypes)
   - [User Study](#user_study)
-- [Prototype](#prototype)
+- [Hifi Prototype](#prototype)
 
 ## Project Description and User Needs <a name="description"></a>
 (Week 2-3)
@@ -73,7 +73,8 @@ As a takeaway, our **most important insights** were the following:
 ### Affinity Diagram <a name="affinity_diagram"></a>
 Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
 
-![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")
+<!--- ![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")) -->
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png" alt="Affinity Diagram" width="500"/>
 
 We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
 
@@ -173,8 +174,8 @@ The winners (a little more in detail) were:
   - Facecam and screen share are displayed in the bubble
     - This might cause it to change its shape
   - Groups could potentially be displayed as clusters connected by a “group bubble”
+  <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png" alt="User-specific Conference Arrangement" width="300"/>
 
-![User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Popup_Avatar_Mockup.png "User-specific Conference Arrangement")
 - **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea
   - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys
@@ -182,8 +183,7 @@ The winners (a little more in detail) were:
   - It often happens that one gets bored when a video call becomes too long
     - This idea might help in staying focused and prevent people from doing something else
     - It also helps detecting inactive users 
-
-![Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png "Agar.io Styled Arrangement")
+  <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Agar.io_Styled_Arrangement.png" alt="Agar.io Styled Arrangement" width="300"/>
     
 ### Lowfi Prototyping <a name="lowfi_prototypes"></a>
 While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
@@ -206,6 +206,8 @@ For conducting the user study, we created a [Study Protocol](https://github.com/
 The project was explained to the participant as follows: 
 “*We want to adapt the user interface of video call tools such that they become easier to handle while providing more functionality. To do so, we created two prototypes that we would like to assess now. The prototypes are very basic and do not really implement the functionality but for now we just pretend as if they did so. Subsequently, you will receive some simple tasks for each of the prototypes. As soon as you complete a task, the message “Good Job” appears on the screen.*”
 
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
+
 In summary, each participant was asked to perform the following taks on both prototypes:
 - “*Create a room and let other people join.*”
 - “*Change another user's level.*”
@@ -216,9 +218,9 @@ Our main goal was to determine two things:
 - How easy is it for the participant to make use of the additional functionalities?
 - Which prototype is less overwhelming
 
-In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). In summary, we concluded that our two prototypes perform quite similarly. The verbal feedback we received from the participants however cleary exposed Prototype A to be clearly more popular.
+In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To sum up, we concluded that our two prototypes perform quite similarly. The verbal feedback we received from the participants however cleary exposed Prototype A to be clearly more popular.
 
-## Prototype <a name="prototype"></a>
+## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
 
     TODO
