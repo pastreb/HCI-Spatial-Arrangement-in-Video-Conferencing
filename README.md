@@ -172,17 +172,19 @@ The project was explained to the participant as follows:
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
 
-In summary, each participant was asked to perform the following taks on both prototypes:
+In summary, each participant was asked to perform the following taks on both prototypes while the **task completion time** was measured as a dependent variable:
 - “*Create a room and let other people join.*”
 - “*Change another user's level.*”
 - “*Change the position and size of another user.*”
 - “*Create a breakout-room, join it and share your screen.*”
 
-Our main goal was to determine two things:
+Our **main goal** was to determine two things:
 - How easy is it for the participant to make use of the additional functionalities?
 - Which prototype is less overwhelming
 
-In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To sum up, we concluded that our two prototypes perform quite similarly. The verbal feedback we received from the participants however cleary exposed Prototype A to be clearly more popular.
+In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
+
+To sum up, we concluded that our two prototypes perform quite similarly. The [Subjective Rating](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Subjective_Rating.pdf) and verbal feedback we received from the participants however cleary exposed Prototype A to be more popular.
 
 ## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
