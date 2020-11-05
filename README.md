@@ -179,10 +179,10 @@ In summary, each [Participant](https://github.com/eth-ait/hci-project-hci2020-gr
 - “*Create a breakout-room, join it and share your screen.*”
 
 Our **main goal** was to determine two things:
-- How easy is it for the participant to make use of the additional functionalities?
-- Which prototype is less overwhelming
+- **How easy is it for the participant to make use of the additional functionalities?**
+- **Which prototype is less overwhelming?**
 
-In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
+In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we first explain the goals and methodology a little more in detail before we analyze the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/t_test_results.png" alt="Paired t-test-Analysis" width="800"/>
 
