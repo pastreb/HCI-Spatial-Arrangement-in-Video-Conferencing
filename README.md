@@ -172,7 +172,7 @@ The project was explained to the participant as follows:
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
 
-In summary, each participant was asked to perform the following taks on both prototypes while the **task completion time** was measured as a dependent variable:
+In summary, each [Participant](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Demographics.pdf) was asked to perform the following taks on both prototypes while the [Task Completion Time](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User%20Performance.pdf) was measured as a dependent variable:
 - “*Create a room and let other people join.*”
 - “*Change another user's level.*”
 - “*Change the position and size of another user.*”
@@ -184,7 +184,11 @@ Our **main goal** was to determine two things:
 
 In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we explained the goals and methodology a little more in detail before we analyzed the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
 
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/t_test_results.png" alt="Paired t-test-Analysis" width="800"/>
+
 To sum up, we concluded that our two prototypes perform quite similarly. The [Subjective Rating](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Subjective_Rating.pdf) and verbal feedback we received from the participants however cleary exposed Prototype A to be more popular.
+
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/subjective_rating_diagrams.png" alt="Subjective Rating Diagrams" width="800"/>
 
 ## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
