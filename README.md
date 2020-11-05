@@ -76,7 +76,7 @@ Based on these interview outcomes, we created our [Affinity Diagram](https://git
 <!--- ![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")) -->
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Affinity_Diagram.png" alt="Affinity Diagram" width="500"/>
 
-We will aim on creating an UI that is as beneficial as possible in meet one or multiple of these needs.
+We will aim on creating an UI that is as beneficial as possible in meeting one or multiple of these needs.
 
 ### Personas <a name="personas"></a>
 The Affinity diagram then helped us create our three **Personas**, which represent typical users:
