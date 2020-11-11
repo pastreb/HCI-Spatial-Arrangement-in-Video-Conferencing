@@ -56,7 +56,7 @@ class UIElement {
     transform.DebugRender();
   }
 
-  public void Update(boolean draw_debug) {    
+  public void Update(boolean draw_debug) {
     if (!is_active) {
       return;
     }

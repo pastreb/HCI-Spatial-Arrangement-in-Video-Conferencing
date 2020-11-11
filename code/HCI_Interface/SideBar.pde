@@ -1,9 +1,11 @@
 class SideBar extends PApplet {
   private UIElement root;
-  public boolean debug = false;
+  public boolean debug = false;  // Disable this if you don't want the green boundary rectangles.
+  private String path;
   
   public void settings() {
     size(360, 1000);
+    path = args[0];
   }
 
   public void setup() {
@@ -44,6 +46,9 @@ class SideBar extends PApplet {
     create_room_button.AddComponent(new Button("CREATE ROOM", create_room_button, "Create"));
     create_room_button.AddComponent(new Collider());
     create_room_button.AddComponent(new CreateRoom());
+
+    loadImage(path + "/images/baseline_account.png");
+
     
     println("initialized sidebar UI");
   }

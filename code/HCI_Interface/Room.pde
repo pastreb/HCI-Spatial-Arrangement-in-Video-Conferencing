@@ -1,10 +1,11 @@
 class Room extends PApplet {
   private UIElement root;
-  public boolean debug;
-
+  public boolean debug = false;  // Disable this if you don't want the green boundary rectangles
+  private String path;
 
   public void settings() {
     size(1400, 1000);
+    path = args[0];
   }
 
   public void setup() {
@@ -22,16 +23,20 @@ class Room extends PApplet {
     UIElement create_b_room_button = new UIElement(this, footer.transform, new Rect(16, -24, 260, 24), new Rect(0, 0, 0, 0));
     create_b_room_button.AddComponent(new Button("CREATE BREAKOUT ROOM"));
     create_b_room_button.AddComponent(new Collider());
-
-    UIElement user_a = new UIElement(this, root.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
+    
+    UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
+    
+    UIElement user_a = new UIElement(this, user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
     user_a.AddComponent(new UserBubble("Max Mustermann"));
     user_a.AddComponent(new Collider());
 
-    UIElement user_b = new UIElement(this, root.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
-    user_b.AddComponent(new UserBubble("Vladimir Putin"));
+    UIElement user_b = new UIElement(this, user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
+    user_b.AddComponent(new UserBubble("Pepe the frog", loadImage(path + "/images/pepe.png"), 100));
     user_b.AddComponent(new Collider());
-
+    // Note: If you load an image from disk, take the absolute path, not the relative path. PApplet messes with the relative path in Processing 3.
+    
     println("initialized room UI");
+
   }
 
   public void draw() {

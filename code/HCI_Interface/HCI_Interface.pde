@@ -10,9 +10,8 @@ void settings() {
 void setup() {
   surface.setVisible(false);
 
-  String[] args = {"SideBar"};
+  String[] args = {"SideBar", sketchPath()};
   SideBar sb = new SideBar();
-  sb.debug = true;
   PApplet.runSketch(args, sb);
 }
 

@@ -78,6 +78,13 @@ class Rect {
     right += x.x;
   }
 
+  public void ClampRect(Rect r) {
+    top = min(max(top, r.top), r.bot);
+    bot = min(max(bot, r.top), r.bot);
+    left = min(max(left, r.left), r.right);
+    right = min(max(right, r.left), r.right);
+  }
+
   public void Clamp(float minimum, float maximum) {
     top = min(max(top, minimum), maximum);
     bot = min(max(bot, minimum), maximum);
@@ -470,7 +477,7 @@ class UserBubble extends Component {
   UserBubble(String name) {
     this(name, null, 1);
   }
-  
+
   // Manipulate the UIElement with the following methods
   public void SetName(String name) {
     this.name = name;
@@ -479,7 +486,7 @@ class UserBubble extends Component {
   public void SetImage(PImage image) {
     this.image = image;
   }
-  
+
   // Code for updating/rendering. Ignore this code if you only want to change the appearance of the UIElement
   public void Start() {
     UIElement puie = GetUIElement();
@@ -502,9 +509,17 @@ class UserBubble extends Component {
     }
     pa.ellipse((bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2, bbox.right - bbox.left, bbox.bot - bbox.top);
 
-
     if (image != null) {
+      PGraphics mask = createGraphics(image.width, image.height);
+      mask.beginDraw();
+      mask.background(0);
+      mask.fill(255);
+      mask.ellipse(image.width/2, image.height/2, image.width * 0.85, image.height * 0.85);
+      mask.endDraw();
+
+      image.mask(mask);
       pa.image(image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+
     } else {
       pa.image(loadImage("images/baseline_account.png"), bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
     }
@@ -521,7 +536,7 @@ class UserBubble extends Component {
     PVector co = new PVector((ca.left + ca.right) / 2, (ca.top + ca.bot) / 2);
     PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY));
     ca.Translate(PVector.sub(o, co));
-    ca.Clamp(0.1, 0.9);
+    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
   }
 
   public void OnClickUpdate() {
@@ -534,9 +549,10 @@ class UserBubble extends Component {
 // Utility comonent that defines the functionality when pressing the "CREATE ROOM" button.
 class CreateRoom extends Component {
   public void Create() {
-    String[] args = {"SideBar"};
+    String path = GetUIElement().applet.args[0];
+
+    String[] args = {"SideBar", path};
     Room sb = new Room();
-    sb.debug = true;
     PApplet.runSketch(args, sb);
   }
 }
