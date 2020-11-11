@@ -23,14 +23,22 @@ class Room extends PApplet {
     create_b_room_button.AddComponent(new Button("CREATE BREAKOUT ROOM"));
     create_b_room_button.AddComponent(new Collider());
 
+    UIElement user_a = new UIElement(this, root.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
+    user_a.AddComponent(new UserBubble("Max Mustermann"));
+    user_a.AddComponent(new Collider());
+
+    UIElement user_b = new UIElement(this, root.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
+    user_b.AddComponent(new UserBubble("Vladimir Putin"));
+    user_b.AddComponent(new Collider());
+
     println("initialized room UI");
   }
 
   public void draw() {
     root.Update(debug);
   }
-  
-  public void exit(){
+
+  public void exit() {
     dispose();
   }
 }

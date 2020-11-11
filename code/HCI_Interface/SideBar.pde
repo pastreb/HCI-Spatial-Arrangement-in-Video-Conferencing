@@ -9,16 +9,17 @@ class SideBar extends PApplet {
   public void setup() {
     root = new Canvas(this, #292929);
     
-    UIElement footer = new UIElement(this, root.transform, new Rect(0, -88, 0, 0), new Rect(0, 1, 1, 1));
-    footer.AddComponent(new Panel(#121212));
+
     UIElement profile_div = new UIElement(this, root.transform, new Rect(0.05, 0.02, 0.95, 0.08)); 
     UIElement your_rooms_div = new UIElement(this, root.transform, new Rect(0.05, 0.1, 0.95, 0.7)); 
     UIElement join_room_div = new UIElement(this, root.transform, new Rect(0.05, 0.72, 0.95, 0.86)); 
+    UIElement footer = new UIElement(this, root.transform, new Rect(0, -88, 0, 0), new Rect(0, 1, 1, 1));
+    footer.AddComponent(new Panel(#121212));
 
-    UIElement profile_label = new UIElement(this, profile_div.transform, new Rect(0, 0.2, 0.3, 0.4));
+    UIElement profile_label = new UIElement(this, profile_div.transform, new Rect(0, 0.1, 0.3, 0.4));
     profile_label.AddComponent(new TextLabel("PROFILE", #BB86FC, 10));
 
-    UIElement profile_name = new UIElement(this, profile_div.transform, new Rect(0, 0.4, 0.7, 0.75));
+    UIElement profile_name = new UIElement(this, profile_div.transform, new Rect(0, 0.4, 0.7, 1));
     profile_name.AddComponent(new TextLabel("Max Mustermann", #FFFFFF, 20));
 
     UIElement your_rooms_label = new UIElement(this, your_rooms_div.transform, new Rect(0.05, 0, 0.95, 0.1));

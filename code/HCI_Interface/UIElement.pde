@@ -41,6 +41,8 @@ class UIElement {
     if (c != null) {
       this.components.add(c);
       c.ui_element = this;
+      
+      c.Start();
     }
   }
 

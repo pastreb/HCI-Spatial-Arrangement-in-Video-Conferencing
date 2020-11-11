@@ -1,20 +1,25 @@
+
 /*
   Components are what gives UIElements functionality. 
-  i.e. Render the UIElement as a button, text, ... but also detecting the mouse pointer, moving UIElements...
-  So UIElements are basically containers for multiple components. This collection of components forms the behaviour of the UIElement.
-  
-  So when creating a button as an example, do the following
-  - Create an instance of UIElement and position it somewhere
-  - Add the Button component (this renders the UIElement as a button)
-  - Add a Collider component (so that the UIElement can detect the mouse and so that other components may use it)
-*/
+ i.e. Render the UIElement as a button, text, ... but also detecting the mouse pointer, moving UIElements...
+ So UIElements are basically containers for multiple components. This collection of components forms the behaviour of the UIElement.
+ 
+ So when creating a button as an example, do the following
+ - Create an instance of UIElement and position it somewhere
+ - Add the Button component (this renders the UIElement as a button)
+ - Add a Collider component (so that the UIElement can detect the mouse and so that other components may use it)
+ */
 
-class Component{
+class Component {
   public UIElement ui_element;
-  
-  public void Update(){}
-  
-  public UIElement GetUIElement(){
+
+  public void Start() {
+  }
+
+  public void Update() {
+  }
+
+  public UIElement GetUIElement() {
     return ui_element;
   }
 }
@@ -23,31 +28,31 @@ class Component{
 
 /*
   A rect is used to describe the shape of a rectangle. 
-  The first two values are the coordinates of the top-left corner. The last two values are the coordinates of the bottom-right corner.
-  Consider the following rectangle:
-  
-    1  2  3  4  5  6  7  8  9
-1
-2   ----------------------
-3   |                    |
-4   |                    |
-5   |                    |
-6   |                    |
-7   ----------------------
-8
-9
-
-  This would translate to the following rectangle:
-  Rect r {
-    top = 2
-    bot = 7
-    left = 1
-    right = 8
-  }
-  
-  The rectangle is meant to be used for describing the position of UIElements
-  
-*/
+ The first two values are the coordinates of the top-left corner. The last two values are the coordinates of the bottom-right corner.
+ Consider the following rectangle:
+ 
+ 1  2  3  4  5  6  7  8  9
+ 1
+ 2   ----------------------
+ 3   |                    |
+ 4   |                    |
+ 5   |                    |
+ 6   |                    |
+ 7   ----------------------
+ 8
+ 9
+ 
+ This would translate to the following rectangle:
+ Rect r {
+ top = 2
+ bot = 7
+ left = 1
+ right = 8
+ }
+ 
+ The rectangle is meant to be used for describing the position of UIElements
+ 
+ */
 
 class Rect {
   public float top;
@@ -65,45 +70,63 @@ class Rect {
   String toString() {
     return "[" + left + ", " + top + ", " + right + ", " + bot + "]";
   }
+
+  public void Translate(PVector x) {
+    top += x.y;
+    bot += x.y;
+    left += x.x;
+    right += x.x;
+  }
+
+  public void Clamp(float minimum, float maximum) {
+    top = min(max(top, minimum), maximum);
+    bot = min(max(bot, minimum), maximum);
+    left = min(max(left, minimum), maximum);
+    right = min(max(right, minimum), maximum);
+  }
+
+  public void Clamp01() {
+    Clamp(0, 1);
+  }
 }
 
 /*
   Transform is probably the most complex and most important component.
-  It describes the position of a UIElement SPACIALLY AND IN THE HIERARCHY.
-  It is also the only component that is automatically bound to every UIElement by default.
-  
-  What is the hierarchy?
-    Every UI has a hierarchy of some sort. For example:
-    - A login window usually has a username-field, a password-field and a login-button that are grouped together.
-    - When opening any social media website, there is usually a navigation header (with multiple buttons), a feed with multiple text sections, a list of friends
-      and all those elements are different from each other and they contain multiple other elements (e.g. multiple buttons, images, texts, ...)
-    
-    The UI for this program is grouped in a similar manner
-    - Each object/UIElement has a parent.
-    - UIElements can have multiple children (or just one, or none)
-    - This means that all UIElements together form a tree of parents/children
-    - The root of this tree is also a UIElement, usually an instance of class Canvas
-    
-  Now for spatial positioning of UIElements
-  - The position of an UIElement is always defined relative to its parent.
-  - The position is of type rect which basically defines the position of the top-left and the bottom-right corner of a UIElement.
-  - position describes the pixel-position and pixel-size to its parent, so it is not relative to size.
-  - the anchor is relative to the size of the parent. basically 
-      - anchor = (0,0,0,0) means that "position" relates to the pixel position of the top-left corner of the parent
-      - anchor = (0.5, 0.5, 0.5, 0.5) means that "position" relates to the pixel position relative to the center of the parent
-      - anchor = (0, 0, 1, 0) means that "position" stretches the whole x-axis at the top of the parent
-      - anchor = (0, 0, 1, 1) means that "position" fills the whole space the parent occupies.
-      To get a feel for this it is best to look at the code of the function GlobalBounds().
-  
-  Why so complicated?
-  - There has to be some sort of hierarchy to create a structured UI. Everything else would be a mess.
-  - There has to be some notion of position and size
-  - Since users can move some stuff around freely, they should be able to decide how large the "canvas" is on which they move stuff around.
-  - To make UI resizable, relative size/position (to the parent) should be used instead of pixel
-  - But making everythig purely relative to the parent size is also bad because i.e. buttons should be of a fixed size. 
-  - To work with relative sizes exclusively can also be kind of a hassle. With pixels you know exactly what you get.
-  
-*/
+ It describes the position of a UIElement SPACIALLY AND IN THE HIERARCHY.
+ It is also the only component that is automatically bound to every UIElement by default.
+ 
+ What is the hierarchy?
+ Every UI has a hierarchy of some sort. For example:
+ - A login window usually has a username-field, a password-field and a login-button that are grouped together.
+ - When opening any social media website, there is usually a navigation header (with multiple buttons), a feed with multiple text sections, a list of friends
+ and all those elements are different from each other and they contain multiple other elements (e.g. multiple buttons, images, texts, ...)
+ 
+ The UI for this program is grouped in a similar manner
+ - Each object/UIElement has a parent.
+ - UIElements can have multiple children (or just one, or none)
+ - This means that all UIElements together form a tree of parents/children
+ - The root of this tree is also a UIElement, usually an instance of class Canvas
+ 
+ Now for spatial positioning of UIElements
+ - The position of an UIElement is always defined relative to its parent.
+ - The position is of type rect which basically defines the position of the top-left and the bottom-right corner of a UIElement.
+ - position describes the pixel-position and pixel-size to its parent, so it is not relative to size.
+ - the anchor is relative to the size of the parent. basically 
+ - anchor = (0,0,0,0) means that "position" relates to the pixel position of the top-left corner of the parent
+ - anchor = (0.5, 0.5, 0.5, 0.5) means that "position" relates to the pixel position relative to the center of the parent
+ - anchor = (0, 0, 1, 0) means that "position" stretches the whole x-axis at the top of the parent
+ - anchor = (0, 0, 1, 1) means that "position" fills the whole space the parent occupies.
+ To get a feel for this it is best to look at the code of the function GlobalBounds().
+ 
+ Why so complicated?
+ - There has to be some sort of hierarchy to create a structured UI. Everything else would be a mess.
+ - There has to be some notion of position and size
+ - Since users can move some stuff around freely, they should be able to decide how large the "canvas" is on which they move stuff around.
+ - To make UI resizable, relative size/position (to the parent) should be used instead of pixel
+ - But making everythig purely relative to the parent size is also bad because i.e. buttons should be of a fixed size. 
+ - To work with relative sizes exclusively can also be kind of a hassle. With pixels you know exactly what you get.
+ 
+ */
 
 class Transform extends Component {
 
@@ -121,7 +144,7 @@ class Transform extends Component {
 
     SetParent(p);
   }
-  
+
   Transform() {
     this(null, 0, 0, 100, 100);
   }
@@ -139,13 +162,17 @@ class Transform extends Component {
     }
     parent = p;
   }
-  
-  public PVector getPosition(){
+
+  public void SetAnchor(Rect anchor) {
+    this.anchor = anchor;
+  }
+
+  public PVector getPosition() {
     Rect r = GlobalBounds();
     return new PVector(r.left, r.top);
   }
-  
-  public PVector getSize(){
+
+  public PVector getSize() {
     Rect r = GlobalBounds();
     return new PVector(r.right - r.left, r.bot - r.top);
   }
@@ -158,19 +185,25 @@ class Transform extends Component {
       return new Rect(
         lerp(r.left, r.right, anchor.left) + position.left, 
         lerp(r.top, r.bot, anchor.top) + position.top, 
-        lerp(r.left, r.right, anchor.right) + position.right,
+        lerp(r.left, r.right, anchor.right) + position.right, 
         lerp(r.top, r.bot, anchor.bot) + position.bot
         );
     }
   }
-  
+
+  public PVector RelativeFromAbsolute(PVector pos) {
+    Rect r = GlobalBounds();
+    return new PVector((pos.x - r.left) / (r.right - r.left), (pos.y - r.top) / (r.bot - r.top));
+  }
+
   // Draws a green rectangle around the bounds of the transform. Hand for debugging UIElements that don't render anything else.
   public void DebugRender() {
     Rect r = GlobalBounds();
     PApplet pa = GetUIElement().applet;
-    
+
     pa.noFill();
     pa.stroke(#00ff00);
+    pa.strokeWeight(1);
     pa.rect(r.left, r.top, r.right - r.left, r.bot - r.top);
     pa.noStroke();
   }
@@ -199,7 +232,6 @@ class Panel extends Component {
     pa.fill(c);
     pa.noStroke();
     pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
-    
   }
 }
 
@@ -207,22 +239,24 @@ class Panel extends Component {
 
 /*
   The collider is a component that detects when the mouse hovers over it or clicks it.
-  It sends the according messages to its UIElement.
-  
-  The messages are:
-  - void OnClickEnter()  ==> The first frame that the UIElement is clicked.
-  - void OnClickUpdate() ==> Every frame while the UIElement is "kept pressed".
-  - void OnClickUpdate() ==> The first frame where UIElement is not clicked anymore.
-  - void OnHoverEnter()  ==> The first frame that the UIElement is hovered on.
-  - void OnHoverUpdate() ==> Every frame where the mouse pointer is positioned on the UIElement.
-  - void OnHoverExit()   ==> The first frame where the mouse pointer is not positioned on the UIElement anymore.
-
-*/
+ It sends the according messages to its UIElement.
+ 
+ The messages are:
+ - void OnClickEnter()  ==> The first frame that the UIElement is clicked.
+ - void OnClickUpdate() ==> Every frame while the UIElement is "kept pressed".
+ - void OnClickUpdate() ==> The first frame where UIElement is not clicked anymore.
+ - void OnHoverEnter()  ==> The first frame that the UIElement is hovered on.
+ - void OnHoverUpdate() ==> Every frame where the mouse pointer is positioned on the UIElement.
+ - void OnHoverExit()   ==> The first frame where the mouse pointer is not positioned on the UIElement anymore.
+ 
+ */
+static boolean c_lock = false;  // This lock ensures that only one collider at a time can be clicked, grabbed, etc
 
 class Collider extends Component {
   private boolean is_hovered;
   private boolean is_clicked;
-  private boolean is_dragged;
+  private boolean is_dragged;  // TODO: Implement
+
 
   Collider() {
     is_hovered = false;
@@ -236,7 +270,7 @@ class Collider extends Component {
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
 
-    if (pa.mouseX > bbox.left && pa.mouseX < bbox.right && pa.mouseY > bbox.top && pa.mouseY < bbox.bot)
+    if (pa.mouseX > bbox.left && pa.mouseX < bbox.right && pa.mouseY > bbox.top && pa.mouseY < bbox.bot && !c_lock)
     {
       if (is_hovered) {
         ui_element.SendMessage("OnHoverUpdate");
@@ -252,12 +286,14 @@ class Collider extends Component {
         } else
         {
           is_clicked = true;
+          c_lock = true;
           ui_element.SendMessage("OnClickEnter");
         }
       } else
       {
         if (is_clicked) {
           is_clicked = false;
+          c_lock = false;
           ui_element.SendMessage("OnClickExit");
         }
       }
@@ -269,8 +305,13 @@ class Collider extends Component {
       }
 
       if (is_clicked) {
-        is_clicked = false;
-        ui_element.SendMessage("OnClickExit");
+        if (pa.mousePressed) {
+          ui_element.SendMessage("OnClickUpdate");
+        } else {
+          is_clicked = false;
+          c_lock = false;
+          ui_element.SendMessage("OnClickExit");
+        }
       }
     }
   }
@@ -280,9 +321,9 @@ class Collider extends Component {
 
 /*
   The button class is a component that displays a button. When clicked, it sends a message to a target UIElement.
-  NOTE: THE BUTTON ONLY WORKS PROPERLY IF THE UIELEMENT ALSO HAS A COLLIDER ATTACHED!
-  The button also changes color depending on if it is idle, hovered, pressed.
-*/
+ NOTE: THE BUTTON ONLY WORKS PROPERLY IF THE UIELEMENT ALSO HAS A COLLIDER ATTACHED!
+ The button also changes color depending on if it is idle, hovered, pressed.
+ */
 
 class Button extends Component {
   // Functionality fields
@@ -299,15 +340,15 @@ class Button extends Component {
   private color text_color = #000000;
   private int text_size = 14;
   private float round_factor = 48;
-  
-  Button(String label, UIElement target_uie, String message){
+
+  Button(String label, UIElement target_uie, String message) {
     this.label = label;
     this.is_hovered = false;
     this.is_clicked = false;
     this.target_uie = target_uie;
     this.message = message;
   }
-  
+
   Button(String label) {
     this(label, null, "");
   }
@@ -324,7 +365,7 @@ class Button extends Component {
     } else {
       pa.fill(default_color);
     }
-    
+
     pa.noStroke();
     pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
 
@@ -335,9 +376,9 @@ class Button extends Component {
   }
 
   void OnClickEnter() {
-    println("Clicked button",label);
+    println("Clicked button", label);
     is_clicked = true;
-    if(target_uie != null){
+    if (target_uie != null) {
       target_uie.SendMessage(message);
     }
   }
@@ -365,15 +406,24 @@ class TextLabel extends Component {
   public String label;
   public color text_color;
   public int text_size;
+  public int v_align;
+  public int h_align;
 
-  TextLabel(String label, color text_color, int text_size) {
+  TextLabel(String label, color text_color, int text_size, int h_align, int v_align) {
     this.label = label;
     this.text_color = text_color;
     this.text_size = text_size;
+    this.h_align = h_align;
+    this.v_align = v_align;
   }
 
+  TextLabel(String label, color text_color, int text_size) {
+    this(label, text_color, text_size, LEFT, CENTER);
+  }
+
+
   TextLabel(String label, color text_color) {
-    this(label, text_color, 12);
+    this(label, text_color, 12, LEFT, CENTER);
   }
 
   public void Update() {
@@ -383,7 +433,110 @@ class TextLabel extends Component {
 
     pa.fill(text_color);
     pa.textSize(text_size);
-    pa.textAlign(LEFT, CENTER);
-    pa.text(label, bbox.left, (bbox.top + bbox.bot) / 2);
+    pa.textAlign(h_align, v_align);
+    pa.text(label, bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top);
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+
+// Displays a user as a bubble
+// Can be moved around when clicked
+// NOTE: fOR THIS COMPONENT TO WORK PROPERLY, ADD A COLLIDER TO THE UIELEMENT!!!
+// To see how to actually use this component, refer to the example in the "Room" tab
+
+// TODO: Add buttons for size, level, mute and expose their functionality.
+
+// If you want to change the name of picture, use SetName(String) and SetPicture(PImage)
+
+class UserBubble extends Component {
+  public PImage image;
+  public String name;
+  public int level;
+  public boolean is_speaking;
+
+  private color not_speaking_color = #FFFFFF;
+  private color speaking_color = #44FF44;
+  private int speech_ring_weight = 5;
+
+  private TextLabel name_text_label;
+
+  UserBubble(String name, PImage image, int level) {
+    this.name = name;
+    this.image = image;
+    this.level = level;
+  }
+
+  UserBubble(String name) {
+    this(name, null, 1);
+  }
+  
+  // Manipulate the UIElement with the following methods
+  public void SetName(String name) {
+    this.name = name;
+  }
+
+  public void SetImage(PImage image) {
+    this.image = image;
+  }
+  
+  // Code for updating/rendering. Ignore this code if you only want to change the appearance of the UIElement
+  public void Start() {
+    UIElement puie = GetUIElement();
+    UIElement e = new UIElement(puie.applet, puie.transform, new Rect(-50, 5, 50, 30), new Rect(.3, 1, .7, 1));
+    name_text_label = new TextLabel(name, #FFFFFF, 14, CENTER, CENTER);
+    e.AddComponent(name_text_label);
+  }
+
+  public void Update() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    pa.noFill();
+    pa.strokeWeight(speech_ring_weight);
+    if (is_speaking) {
+      pa.stroke(speaking_color);
+    } else {
+      pa.stroke(not_speaking_color);
+    }
+    pa.ellipse((bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2, bbox.right - bbox.left, bbox.bot - bbox.top);
+
+
+    if (image != null) {
+      pa.image(image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+    } else {
+      pa.image(loadImage("images/baseline_account.png"), bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+    }
+
+    pa.noStroke();
+  }
+
+  public void MoveToMouse() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    Rect ca = t.anchor;
+    PVector co = new PVector((ca.left + ca.right) / 2, (ca.top + ca.bot) / 2);
+    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY));
+    ca.Translate(PVector.sub(o, co));
+    ca.Clamp(0.1, 0.9);
+  }
+
+  public void OnClickUpdate() {
+    MoveToMouse();
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------------------
+
+// Utility comonent that defines the functionality when pressing the "CREATE ROOM" button.
+class CreateRoom extends Component {
+  public void Create() {
+    String[] args = {"SideBar"};
+    Room sb = new Room();
+    sb.debug = true;
+    PApplet.runSketch(args, sb);
   }
 }
