@@ -11,7 +11,7 @@ void setup() {
   surface.setVisible(false);
 
   String[] args = {"SideBar", sketchPath()};
-  SideBar sb = new SideBar();
+  SidebarWindow sb = new SidebarWindow();
   PApplet.runSketch(args, sb);
 }
 

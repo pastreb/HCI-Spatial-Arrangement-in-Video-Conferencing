@@ -45,11 +45,24 @@ class UIElement {
       c.Start();
     }
   }
+  
+  public Component GetComponent(String class_name){
+    for(Component c : components){
+      if(c.getClass().getName().contains(class_name)){
+        return c;
+      }
+    }
+    return null;
+  }
 
   public void SendMessage(String message) {
     for (Component c : components) {
       CallByName(c, message);
     }
+  }
+  
+  public void SetActive(boolean active){
+    this.is_active = active;
   }
 
   public void DebugRender() {

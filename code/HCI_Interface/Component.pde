@@ -78,6 +78,16 @@ class Rect {
     right += x.x;
   }
 
+  public void Scale(float x) {
+    float mx = (left + right) / 2;
+    float my = (top + bot) / 2;
+
+    top = (top - my) * x + my;
+    bot = (bot - my) * x + my;
+    left = (left - mx) * x + mx;
+    right = (right - mx) * x + mx;
+  }
+
   public void ClampRect(Rect r) {
     top = min(max(top, r.top), r.bot);
     bot = min(max(bot, r.top), r.bot);
@@ -227,8 +237,13 @@ class Panel extends Component {
 
   private float round_factor = 0;
 
-  Panel(color c) {
+  Panel(color c, float round_factor) {
     this.c = c;
+    this.round_factor = round_factor;
+  }
+
+  Panel(color c) {
+    this(c, 0);
   }
 
   public void Update() {
@@ -336,8 +351,12 @@ class Button extends Component {
   // Functionality fields
   private boolean is_hovered;
   private boolean is_clicked;
-  private UIElement target_uie;
-  private String message;
+  private UIElement click_target_uie;
+  private UIElement hold_target_uie;
+  private UIElement release_target_uie;
+  private String click_message;
+  private String hold_message;
+  private String release_message;
 
   // Styling fields
   private String label;
@@ -352,12 +371,22 @@ class Button extends Component {
     this.label = label;
     this.is_hovered = false;
     this.is_clicked = false;
-    this.target_uie = target_uie;
-    this.message = message;
+    this.click_target_uie = target_uie;
+    this.click_message = message;
   }
 
   Button(String label) {
     this(label, null, "");
+  }
+
+  public void SetHoldMessage(UIElement target_uie, String message) {
+    this.hold_target_uie = target_uie;
+    this.hold_message = message;
+  }
+
+  public void SetReleaseMessage(UIElement target_uie, String message) {
+    this.release_target_uie = target_uie;
+    this.release_message = message;
   }
 
   public void Update() {
@@ -385,13 +414,22 @@ class Button extends Component {
   void OnClickEnter() {
     println("Clicked button", label);
     is_clicked = true;
-    if (target_uie != null) {
-      target_uie.SendMessage(message);
+    if (click_target_uie != null) {
+      click_target_uie.SendMessage(click_message);
+    }
+  }
+
+  void OnClickUpdate() {
+    if (hold_target_uie != null) {
+      hold_target_uie.SendMessage(hold_message);
     }
   }
 
   void OnClickExit() {
     is_clicked = false;
+    if (release_target_uie != null) {
+      release_target_uie.SendMessage(release_message);
+    }
   }
 
   void OnHoverEnter() {
@@ -433,6 +471,10 @@ class TextLabel extends Component {
     this(label, text_color, 12, LEFT, CENTER);
   }
 
+  public void SetLabel(String label) {
+    this.label = label;
+  }
+
   public void Update() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
@@ -461,17 +503,27 @@ class UserBubble extends Component {
   public String name;
   public int level;
   public boolean is_speaking;
+  public boolean show_buttons;
 
   private color not_speaking_color = #FFFFFF;
   private color speaking_color = #44FF44;
   private int speech_ring_weight = 5;
 
-  private TextLabel name_text_label;
+  private UIElement name_bubble;
+  private UIElement level_bubble;
+
+  private UIElement mute_button;
+  private UIElement level_button;
+  private UIElement resize_button;
+  private UIElement move_button;
 
   UserBubble(String name, PImage image, int level) {
     this.name = name;
     this.image = image;
     this.level = level;
+
+    this.is_speaking = false;
+    this.show_buttons = true;
   }
 
   UserBubble(String name) {
@@ -487,12 +539,49 @@ class UserBubble extends Component {
     this.image = image;
   }
 
+  public void ToggleButtons() {
+    show_buttons = !show_buttons;
+
+    mute_button.SetActive(show_buttons);
+    level_button.SetActive(show_buttons);
+    resize_button.SetActive(show_buttons);
+    move_button.SetActive(show_buttons);
+  }
+
   // Code for updating/rendering. Ignore this code if you only want to change the appearance of the UIElement
   public void Start() {
     UIElement puie = GetUIElement();
-    UIElement e = new UIElement(puie.applet, puie.transform, new Rect(-50, 5, 50, 30), new Rect(.3, 1, .7, 1));
-    name_text_label = new TextLabel(name, #FFFFFF, 14, CENTER, CENTER);
-    e.AddComponent(name_text_label);
+    Button b;
+
+    name_bubble = new UIElement(puie.applet, puie.transform, new Rect(-50, 5, 50, 30), new Rect(.3, 1, .7, 1));
+    name_bubble.AddComponent(new Panel(#292929, 24));
+    name_bubble.AddComponent(new TextLabel(name, #FFFFFF, 14, CENTER, CENTER));
+
+    level_bubble = new UIElement(puie.applet, puie.transform, new Rect(-20, -15, 15, 20), new Rect(.9, .9, .9, .9));
+    level_bubble.AddComponent(new Panel(#bb86fc, 48));
+    level_bubble.AddComponent(new TextLabel(str(level), #FFFFFF, 14, CENTER, CENTER));
+
+    mute_button = new UIElement(puie.applet, puie.transform, new Rect(-96, -72, -4, -40), new Rect(0, .5, 0, .5));
+    mute_button.AddComponent(new Collider());
+    mute_button.AddComponent(new Button("MUTE"));
+
+    level_button = new UIElement(puie.applet, puie.transform, new Rect(-96, -32, -4, 0), new Rect(0, .5, 0, .5));
+    level_button.AddComponent(new Collider());
+    level_button.AddComponent(new Button("LEVEL"));
+
+    resize_button = new UIElement(puie.applet, puie.transform, new Rect(-96, 8, -4, 40), new Rect(0, .5, 0, .5));
+    resize_button.AddComponent(new Collider());
+    b = new Button("RESIZE");
+    b.SetHoldMessage(puie, "Resize");
+    resize_button.AddComponent(b);
+
+    move_button = new UIElement(puie.applet, puie.transform, new Rect(-96, 48, -4, 80), new Rect(0, .5, 0, .5));
+    move_button.AddComponent(new Collider());
+    b = new Button("MOVE");
+    b.SetHoldMessage(puie, "Move");
+    move_button.AddComponent(b);
+
+    ToggleButtons();
   }
 
   public void Update() {
@@ -500,14 +589,8 @@ class UserBubble extends Component {
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
 
-    pa.noFill();
-    pa.strokeWeight(speech_ring_weight);
-    if (is_speaking) {
-      pa.stroke(speaking_color);
-    } else {
-      pa.stroke(not_speaking_color);
-    }
-    pa.ellipse((bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2, bbox.right - bbox.left, bbox.bot - bbox.top);
+    ((TextLabel)name_bubble.GetComponent("TextLabel")).SetLabel(name);
+    ((TextLabel)level_bubble.GetComponent("TextLabel")).SetLabel(str(level));
 
     if (image != null) {
       PGraphics mask = createGraphics(image.width, image.height);
@@ -519,28 +602,48 @@ class UserBubble extends Component {
 
       image.mask(mask);
       pa.image(image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
-
     } else {
       pa.image(loadImage("images/baseline_account.png"), bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+    }    
+    pa.noFill();
+    pa.strokeWeight(speech_ring_weight);
+    if (is_speaking) {
+      pa.stroke(speaking_color);
+    } else {
+      pa.stroke(not_speaking_color);
     }
-
+    pa.ellipse((bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2, bbox.right - bbox.left, bbox.bot - bbox.top);
     pa.noStroke();
   }
 
-  public void MoveToMouse() {
+  public void Resize() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    float sensitivity = 0.004;
+    float delta = pa.pmouseY - pa.mouseY;
+
+    t.position.Scale(1 + delta * sensitivity);
+  }
+
+  public void Move() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
 
     Rect ca = t.anchor;
-    PVector co = new PVector((ca.left + ca.right) / 2, (ca.top + ca.bot) / 2);
-    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY));
-    ca.Translate(PVector.sub(o, co));
+    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
+    ca.Translate(o);
     ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
   }
 
+  public void OnClickEnter() {
+    ToggleButtons();
+  }
+
   public void OnClickUpdate() {
-    MoveToMouse();
+    Move();
   }
 }
 
@@ -552,7 +655,51 @@ class CreateRoom extends Component {
     String path = GetUIElement().applet.args[0];
 
     String[] args = {"SideBar", path};
-    Room sb = new Room();
+    RoomWindow sb = new RoomWindow();
     PApplet.runSketch(args, sb);
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------------------
+
+class BreakoutWindow extends Component {
+  private UIElement background_panel;
+  private UIElement room_name;
+  private UIElement close_button;
+  private UIElement screen_share_button;
+
+  private color background_color;
+  private String name;
+  private float rounding_factor = 0;
+
+  BreakoutWindow(String name, color c) {
+    this.background_color = c;
+    this.name = name;
+  }
+
+  BreakoutWindow() {
+    this("New Room", #121212);
+  }
+
+  public void Start() {
+    UIElement puie = GetUIElement();
+    Button b;
+
+    background_panel = new UIElement(puie.applet, puie.transform, new Rect(0, 0, 1, 1));
+    background_panel.AddComponent(new Panel(background_color, rounding_factor));
+
+    room_name = new UIElement(puie.applet, background_panel.transform, new Rect(16, 0, 0, 64), new Rect(0, 0, .8, 0));
+    room_name.AddComponent(new TextLabel(name, #DBB2FF, 16, LEFT, CENTER));
+
+    close_button = new UIElement(puie.applet, background_panel.transform, new Rect(-32, 0, 0, 32), new Rect(1, 0, 1, 0));
+    close_button.AddComponent(new TextLabel("X", #DBB2FF, 16, CENTER, CENTER));
+
+
+    screen_share_button = new UIElement(puie.applet, background_panel.transform, new Rect(4, -52, 188, -4), new Rect(0, 1, 0, 1));
+    screen_share_button.AddComponent(new Collider());
+    screen_share_button.AddComponent(new Button("SHARE SCREEN"));
+  }
+
+  public void Update() {
   }
 }
