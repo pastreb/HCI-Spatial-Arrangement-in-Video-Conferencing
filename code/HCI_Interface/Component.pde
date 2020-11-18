@@ -31,7 +31,7 @@ class Component {
  The first two values are the coordinates of the top-left corner. The last two values are the coordinates of the bottom-right corner.
  Consider the following rectangle:
  
- 1  2  3  4  5  6  7  8  9
+     1  2  3  4  5  6  7  8  9
  1
  2   ----------------------
  3   |                    |
@@ -204,6 +204,9 @@ class Transform extends Component {
         lerp(r.top, r.bot, anchor.top) + position.top, 
         lerp(r.left, r.right, anchor.right) + position.right, 
         lerp(r.top, r.bot, anchor.bot) + position.bot
+        // lerp(start,stop,amt) calculates a number between start and stop at a specific increment. 
+        // The amt parameter is the amount to interpolate between the two values where 0.0 is equal to the first point, 0.1 is very near 
+        // to the first point, 0.5 is half-way in between and so on.
         );
     }
   }
