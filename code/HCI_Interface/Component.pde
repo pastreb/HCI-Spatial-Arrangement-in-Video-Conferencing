@@ -427,8 +427,8 @@ class Button extends Component {
   Button() {
     this("", null, "");
   }
-  
-    public void SetClickMessage(UIElement target_uie, String message) {
+
+  public void SetClickMessage(UIElement target_uie, String message) {
     this.click_target_uie = target_uie;
     this.click_message = message;
   }
@@ -662,18 +662,20 @@ class UserBubble extends Component {
     ((TextLabel)name_bubble.GetComponent("TextLabel")).SetLabel(name);
     ((TextLabel)level_bubble.GetComponent("TextLabel")).SetLabel(str(level));
 
-    if (image != null) {
-      PGraphics mask = createGraphics(image.width, image.height);
-      mask.beginDraw();
-      mask.background(0);
-      mask.fill(255);
-      mask.ellipse(image.width/2, image.height/2, image.width * 0.85, image.height * 0.85);
-      mask.endDraw();
+    PGraphics mask = image == null ? createGraphics(512, 512) : createGraphics(image.width, image.height);
+    mask.beginDraw();
+    mask.background(0);
+    mask.fill(255);
+    mask.ellipse(mask.width/2, mask.height/2, mask.width * 0.85, mask.height * 0.85);
+    mask.endDraw();
 
+    if (image != null) {
       image.mask(mask);
       pa.image(image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
     } else {
-      pa.image(loadImage("images/baseline_account.png"), bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+      PImage def_image = loadImage("images/baseline_account.png");
+      def_image.mask(mask);
+      pa.image(def_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
     }    
     pa.noFill();
     pa.strokeWeight(speech_ring_weight);
@@ -755,22 +757,6 @@ class CreateRoom extends Component {
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
-class Draggable extends Component {
-  public void Move() {
-    println("dragging");
-    Transform t = GetUIElement().transform;
-    Rect bbox = t.GlobalBounds();
-    PApplet pa = GetUIElement().applet;
-
-    Rect ca = t.anchor;
-    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
-    ca.Translate(o);
-    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
-  }
-}
-
-// -----------------------------------------------------------------------------------------------------------------------------------------
-
 class BreakoutWindow extends Component {
   private UIElement background_panel;
   private UIElement room_name;
@@ -812,8 +798,7 @@ class BreakoutWindow extends Component {
     UIElement puie = GetUIElement();
     Button b;
 
-    puie.AddComponent(new Draggable());
-    puie.AddComponent(new Collider());
+    // puie.AddComponent(new Collider());
 
     background_panel = new UIElement(puie.applet, puie.transform, new Rect(0, 0, 1, 1));
     background_panel.AddComponent(new Panel(background_color, rounding_factor));
@@ -821,7 +806,7 @@ class BreakoutWindow extends Component {
     room_name = new UIElement(puie.applet, background_panel.transform, new Rect(16, 0, 0, 64), new Rect(0, 0, .8, 0));
     room_name.AddComponent(new TextLabel(name, #DBB2FF, 16, LEFT, CENTER));
     b = new Button();
-    b.SetClickMessage(puie, "Move");
+    b.SetHoldMessage(puie, "Move");
     room_name.AddComponent(b);
     room_name.AddComponent(new Collider());
 
