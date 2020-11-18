@@ -13,13 +13,18 @@
  */
 
 class UIElement {
+  private String name;
   public PApplet applet;
   public boolean is_active;
   public Transform transform;
   public ArrayList<Component> components;
 
   public UIElement(PApplet applet, Transform parent, Rect rect, Rect anchor) {
-    this(applet);
+    this(applet, "myUIElement", parent, rect, anchor);
+  }
+
+  public UIElement(PApplet applet, String name, Transform parent, Rect rect, Rect anchor) {
+    this(applet, name);
     transform.SetParent(parent);
     transform.position = rect;
     transform.anchor = anchor;
@@ -29,7 +34,8 @@ class UIElement {
     this(applet, parent, new Rect(0, 0, 0, 0), anchor);
   }
 
-  public UIElement(PApplet applet) {
+  public UIElement(PApplet applet, String name) {
+    this.name = name;
     this.applet = applet;
     this.is_active = true;
     this.transform = new Transform();
@@ -41,27 +47,27 @@ class UIElement {
     if (c != null) {
       this.components.add(c);
       c.ui_element = this;
-      
+
       c.Start();
     }
   }
-  
-  public Component GetComponent(String class_name){
-    for(Component c : components){
-      if(c.getClass().getName().contains(class_name)){
+
+  public Component GetComponent(String class_name) {
+    for (Component c : components) {
+      if (c.getClass().getName().contains(class_name)) {
         return c;
       }
     }
     return null;
   }
 
-  public void SendMessage(String message) {
+  public void SendMessage(String message, Object... args) {
     for (Component c : components) {
-      CallByName(c, message);
+      CallByName(c, message, args);
     }
   }
-  
-  public void SetActive(boolean active){
+
+  public void SetActive(boolean active) {
     this.is_active = active;
   }
 
@@ -100,11 +106,12 @@ class UIElement {
   A canvas is basically just a UIElement that scales to the size of the screen.
  It is meant to be the root of the UIElement hierarchy
  */
+
 class Canvas extends UIElement {
   private color bg_color;
 
   Canvas(PApplet applet, color c) {
-    super(applet);
+    super(applet, "canvas");
 
     bg_color = c;
     this.transform.position = new Rect(0, 0, applet.width, applet.height);
@@ -127,23 +134,25 @@ class Canvas extends UIElement {
 
 /*
   The EventHandler is a collection of helper functions. What they do is when given an object and a string X is
-  - Find a method of name X in the object
-  - call the method. (It may have arguments/return value)
-*/
+ - Find a method of name X in the object
+ - call the method. (It may have arguments/return value)
+ */
 
-public Object CallByName(Object obj, String method_name, Object[] args, boolean require_receiver) {
+public Object CallByName(Object obj, String method_name, Object[] args) {
   try {
-    java.lang.reflect.Method m = obj.getClass().getMethod(method_name);
+    Class[] t = new Class[args.length];
+    for(int i=0;i<args.length;i++){
+      t[i] = args[i].getClass();
+    }
+    
+    java.lang.reflect.Method m = obj.getClass().getMethod(method_name, t);
     return m.invoke(obj, args);
   }
   catch (Exception e) {
-    if(require_receiver) {
-      print("Exception:", obj.getClass(), "does not contain a definition for", method_name);
+    if(method_name == "OnCollisionEnter"){
+      // println(((Component)obj).GetUIElement().name);
+      // println(e);
     }
     return null;
   }
-}
-
-public Object CallByName(Object obj, String method_name) {
-  return CallByName(obj, method_name, new Object[0], false);
 }

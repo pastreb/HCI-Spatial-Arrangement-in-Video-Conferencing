@@ -46,9 +46,6 @@ class SidebarWindow extends PApplet {
     create_room_button.AddComponent(new Button("CREATE ROOM", create_room_button, "Create"));
     create_room_button.AddComponent(new Collider());
     create_room_button.AddComponent(new CreateRoom());
-
-    loadImage(path + "/images/baseline_account.png");
-
     
     println("initialized sidebar UI");
   }
@@ -62,7 +59,7 @@ class SidebarWindow extends PApplet {
 
 class RoomWindow extends PApplet {
   private UIElement root;
-  public boolean debug = false;  // Disable this if you don't want the green boundary rectangles
+  public boolean debug = true;  // Disable this if you don't want the green boundary rectangles
   private String path;
 
   public void settings() {
@@ -88,16 +85,16 @@ class RoomWindow extends PApplet {
     
     UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
     
-    UIElement user_a = new UIElement(this, user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
+    UIElement user_a = new UIElement(this, "max", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
     user_a.AddComponent(new UserBubble("Max Mustermann"));
     user_a.AddComponent(new Collider());
 
-    UIElement user_b = new UIElement(this, user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
+    UIElement user_b = new UIElement(this, "pepe", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
     user_b.AddComponent(new UserBubble("Pepe the frog", loadImage(path + "/images/pepe.png"), 100));
     user_b.AddComponent(new Collider());
     // Note: If you load an image from disk, take the absolute path, not the relative path. PApplet messes with the relative path in Processing 3.
     
-    UIElement b_room_1 = new UIElement(this, user_canvas.transform, new Rect(-48, -96, 48, 96), new Rect(.7, .3, .9, .7));
+    UIElement b_room_1 = new UIElement(this, "breakout room 1", user_canvas.transform, new Rect(-48, -96, 48, 96), new Rect(.7, .3, .9, .7));
     b_room_1.AddComponent(new BreakoutWindow());
     
     println("initialized room UI");

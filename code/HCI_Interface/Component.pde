@@ -149,7 +149,7 @@ class Transform extends Component {
 
   public Transform parent;
   public ArrayList<Transform> children;
-
+  
   public Rect position;
   public Rect anchor;
 
@@ -279,11 +279,14 @@ class Collider extends Component {
   private boolean is_clicked;
   private boolean is_dragged;  // TODO: Implement
 
+  private ArrayList<Transform> collisions;
 
   Collider() {
     is_hovered = false;
     is_clicked = false;
     is_dragged = false;
+
+    collisions  = new ArrayList<Transform>();
   }
 
 
@@ -336,6 +339,26 @@ class Collider extends Component {
         }
       }
     }
+
+    for (Transform t2 : t.parent.children) {
+      Rect bbox2 = t2.GlobalBounds();
+      Collider col = (Collider)t2.GetUIElement().GetComponent("Collider");
+      boolean is_in = collisions.contains(t2);
+
+      if (t != t2 && col != null && bbox.top <= bbox2.bot && bbox.bot >= bbox2.top && bbox.left <= bbox2.right && bbox.right >= bbox2.left) {
+        if (!is_in) {
+          // println(t.GetUIElement().name, "collided with", t2.GetUIElement().name);
+          ui_element.SendMessage("OnCollisionEnter", t2);
+          collisions.add(t2);
+        } else {
+          ui_element.SendMessage("OnCollisionUpdate", t2);
+        }
+      } else if (is_in) {
+        // println(t.GetUIElement().name, "decoupled from", t2.GetUIElement().name);
+        ui_element.SendMessage("OnCollisionExit", t2);
+        collisions.remove(t2);
+      }
+    }
   }
 }
 
@@ -379,6 +402,10 @@ class Button extends Component {
     this(label, null, "");
   }
 
+  Button() {
+    this("", null, "");
+  }
+
   public void SetHoldMessage(UIElement target_uie, String message) {
     this.hold_target_uie = target_uie;
     this.hold_message = message;
@@ -394,21 +421,23 @@ class Button extends Component {
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
 
-    if (is_clicked) {
-      pa.fill(click_color);
-    } else if (is_hovered) {
-      pa.fill(hover_color);
-    } else {
-      pa.fill(default_color);
+    if (label != "") {
+      if (is_clicked) {
+        pa.fill(click_color);
+      } else if (is_hovered) {
+        pa.fill(hover_color);
+      } else {
+        pa.fill(default_color);
+      }
+
+      pa.noStroke();
+      pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
+
+      pa.fill(text_color);
+      pa.textSize(text_size);
+      pa.textAlign(CENTER, CENTER);
+      pa.text(label, (bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2);
     }
-
-    pa.noStroke();
-    pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
-
-    pa.fill(text_color);
-    pa.textSize(text_size);
-    pa.textAlign(CENTER, CENTER);
-    pa.text(label, (bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2);
   }
 
   void OnClickEnter() {
@@ -421,6 +450,7 @@ class Button extends Component {
 
   void OnClickUpdate() {
     if (hold_target_uie != null) {
+      // println("Holding button", label);
       hold_target_uie.SendMessage(hold_message);
     }
   }
@@ -428,6 +458,7 @@ class Button extends Component {
   void OnClickExit() {
     is_clicked = false;
     if (release_target_uie != null) {
+      println("Released button", label);
       release_target_uie.SendMessage(release_message);
     }
   }
@@ -453,7 +484,7 @@ class TextLabel extends Component {
   public int text_size;
   public int v_align;
   public int h_align;
-
+  
   TextLabel(String label, color text_color, int text_size, int h_align, int v_align) {
     this.label = label;
     this.text_color = text_color;
@@ -508,6 +539,8 @@ class UserBubble extends Component {
   private color not_speaking_color = #FFFFFF;
   private color speaking_color = #44FF44;
   private int speech_ring_weight = 5;
+  
+  private UIElement potential_b_room;
 
   private UIElement name_bubble;
   private UIElement level_bubble;
@@ -524,6 +557,8 @@ class UserBubble extends Component {
 
     this.is_speaking = false;
     this.show_buttons = true;
+    
+    this.potential_b_room = null;
   }
 
   UserBubble(String name) {
@@ -645,6 +680,24 @@ class UserBubble extends Component {
   public void OnClickUpdate() {
     Move();
   }
+  
+  public void OnClickExit(){
+    if(potential_b_room != null){
+      ((BreakoutWindow)potential_b_room.GetComponent("BreakoutWindow")).AddUser(GetUIElement());
+    }
+  }
+  
+  public void OnCollisionEnter(Transform other){
+    if(other.GetUIElement().GetComponent("BreakoutWindow") != null){
+      potential_b_room = other.GetUIElement();
+    }
+  }
+  
+  public void OnCollisionExit(Transform other){
+        if(other.GetUIElement() == potential_b_room){
+      potential_b_room = null;
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
@@ -662,6 +715,21 @@ class CreateRoom extends Component {
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
+class Draggable extends Component {
+  public void Move() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    Rect ca = t.anchor;
+    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
+    ca.Translate(o);
+    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
+  }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------------------
+
 class BreakoutWindow extends Component {
   private UIElement background_panel;
   private UIElement room_name;
@@ -672,24 +740,49 @@ class BreakoutWindow extends Component {
   private String name;
   private float rounding_factor = 0;
 
+  private ArrayList<UIElement> users;
+  private UIElement user_to_add;
+
   BreakoutWindow(String name, color c) {
     this.background_color = c;
     this.name = name;
+
+    this.users = new ArrayList<UIElement>();
+    this.user_to_add = null;
   }
 
   BreakoutWindow() {
     this("New Room", #121212);
   }
 
+  public void AddUser(UIElement user) {
+    users.add(user);
+    user.transform.SetParent(GetUIElement().transform);
+    PVector p = new PVector(0.5 + 0.3 * sin(users.size()), 0.5 + 0.3 * sin(users.size()));
+    user.transform.anchor = new Rect(p.x, p.y, p.x, p.y);
+  }
+
+  public void RemoveUser(UIElement user) {
+    users.remove(user);
+    // user.transform.SetParent(GetUIElement().transform.parent);
+  }
+
   public void Start() {
     UIElement puie = GetUIElement();
     Button b;
+
+    puie.AddComponent(new Draggable());
+    puie.AddComponent(new Collider());
 
     background_panel = new UIElement(puie.applet, puie.transform, new Rect(0, 0, 1, 1));
     background_panel.AddComponent(new Panel(background_color, rounding_factor));
 
     room_name = new UIElement(puie.applet, background_panel.transform, new Rect(16, 0, 0, 64), new Rect(0, 0, .8, 0));
     room_name.AddComponent(new TextLabel(name, #DBB2FF, 16, LEFT, CENTER));
+    b = new Button();
+    b.SetHoldMessage(puie, "Move");
+    room_name.AddComponent(b);
+    room_name.AddComponent(new Collider());
 
     close_button = new UIElement(puie.applet, background_panel.transform, new Rect(-32, 0, 0, 32), new Rect(1, 0, 1, 0));
     close_button.AddComponent(new TextLabel("X", #DBB2FF, 16, CENTER, CENTER));
