@@ -149,7 +149,7 @@ class Transform extends Component {
 
   public Transform parent;
   public ArrayList<Transform> children;
-  
+
   public Rect position;
   public Rect anchor;
 
@@ -204,6 +204,9 @@ class Transform extends Component {
         lerp(r.top, r.bot, anchor.top) + position.top, 
         lerp(r.left, r.right, anchor.right) + position.right, 
         lerp(r.top, r.bot, anchor.bot) + position.bot
+        // lerp(start,stop,amt) calculates a number between start and stop at a specific increment. 
+        // The amt parameter is the amount to interpolate between the two values where 0.0 is equal to the first point, 0.1 is very near 
+        // to the first point, 0.5 is half-way in between and so on.
         );
     }
   }
@@ -390,6 +393,16 @@ class Button extends Component {
   private int text_size = 14;
   private float round_factor = 48;
 
+  public void set_textsize(int x) {
+    this.text_size = x;
+  }
+
+  // Additional Functionalities to use an image for a button (instead of text)
+  public boolean is_image = false;
+  public PImage default_image = null;
+  public PImage click_image = null;
+  public PImage hover_image = null;
+
   Button(String label, UIElement target_uie, String message) {
     this.label = label;
     this.is_hovered = false;
@@ -402,8 +415,22 @@ class Button extends Component {
     this(label, null, "");
   }
 
+  // Creates a button that displays an image instead of text
+  Button(String label, UIElement target_uie, String message, PImage default_image, PImage click_image, PImage hover_image) {
+    this(label, target_uie, message);
+    this.is_image = true;
+    this.default_image = default_image;
+    this.hover_image = hover_image;
+    this.click_image = click_image;
+  }
+
   Button() {
     this("", null, "");
+  }
+  
+    public void SetClickMessage(UIElement target_uie, String message) {
+    this.click_target_uie = target_uie;
+    this.click_message = message;
   }
 
   public void SetHoldMessage(UIElement target_uie, String message) {
@@ -421,7 +448,16 @@ class Button extends Component {
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
 
-    if (label != "") {
+
+    if (is_image) {
+      if (is_clicked) {
+        pa.image(click_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+      } else if (is_hovered) {
+        pa.image(hover_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+      } else {
+        pa.image(default_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
+      }
+    } else if (label != "") { // Button is an image
       if (is_clicked) {
         pa.fill(click_color);
       } else if (is_hovered) {
@@ -429,7 +465,6 @@ class Button extends Component {
       } else {
         pa.fill(default_color);
       }
-
       pa.noStroke();
       pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
 
@@ -484,7 +519,7 @@ class TextLabel extends Component {
   public int text_size;
   public int v_align;
   public int h_align;
-  
+
   TextLabel(String label, color text_color, int text_size, int h_align, int v_align) {
     this.label = label;
     this.text_color = text_color;
@@ -539,7 +574,7 @@ class UserBubble extends Component {
   private color not_speaking_color = #FFFFFF;
   private color speaking_color = #44FF44;
   private int speech_ring_weight = 5;
-  
+
   private UIElement potential_b_room;
 
   private UIElement name_bubble;
@@ -557,7 +592,7 @@ class UserBubble extends Component {
 
     this.is_speaking = false;
     this.show_buttons = true;
-    
+
     this.potential_b_room = null;
   }
 
@@ -680,21 +715,18 @@ class UserBubble extends Component {
   public void OnClickUpdate() {
     Move();
   }
-  
-  public void OnClickExit(){
-    if(potential_b_room != null){
-      ((BreakoutWindow)potential_b_room.GetComponent("BreakoutWindow")).AddUser(GetUIElement());
-    }
+
+  public void OnClickExit() {
   }
-  
-  public void OnCollisionEnter(Transform other){
-    if(other.GetUIElement().GetComponent("BreakoutWindow") != null){
+
+  public void OnCollisionEnter(Transform other) {
+    if (other.GetUIElement().GetComponent("BreakoutWindow") != null) {
       potential_b_room = other.GetUIElement();
     }
   }
-  
-  public void OnCollisionExit(Transform other){
-        if(other.GetUIElement() == potential_b_room){
+
+  public void OnCollisionExit(Transform other) {
+    if (other.GetUIElement() == potential_b_room) {
       potential_b_room = null;
     }
   }
@@ -711,12 +743,21 @@ class CreateRoom extends Component {
     RoomWindow sb = new RoomWindow();
     PApplet.runSketch(args, sb);
   }
+
+  public void Settings() {
+    String path = GetUIElement().applet.args[0];
+
+    String[] args = {"SideBar", path};
+    SettingsWindow sb = new SettingsWindow();
+    PApplet.runSketch(args, sb);
+  }
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
 class Draggable extends Component {
   public void Move() {
+    println("dragging");
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
@@ -755,16 +796,16 @@ class BreakoutWindow extends Component {
     this("New Room", #121212);
   }
 
-  public void AddUser(UIElement user) {
-    users.add(user);
-    user.transform.SetParent(GetUIElement().transform);
-    PVector p = new PVector(0.5 + 0.3 * sin(users.size()), 0.5 + 0.3 * sin(users.size()));
-    user.transform.anchor = new Rect(p.x, p.y, p.x, p.y);
-  }
+  public void Move() {
+    println("dragging");
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
 
-  public void RemoveUser(UIElement user) {
-    users.remove(user);
-    // user.transform.SetParent(GetUIElement().transform.parent);
+    Rect ca = t.anchor;
+    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
+    ca.Translate(o);
+    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
   }
 
   public void Start() {
@@ -780,7 +821,7 @@ class BreakoutWindow extends Component {
     room_name = new UIElement(puie.applet, background_panel.transform, new Rect(16, 0, 0, 64), new Rect(0, 0, .8, 0));
     room_name.AddComponent(new TextLabel(name, #DBB2FF, 16, LEFT, CENTER));
     b = new Button();
-    b.SetHoldMessage(puie, "Move");
+    b.SetClickMessage(puie, "Move");
     room_name.AddComponent(b);
     room_name.AddComponent(new Collider());
 
