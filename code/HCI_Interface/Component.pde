@@ -369,6 +369,16 @@ class Button extends Component {
   private color text_color = #000000;
   private int text_size = 14;
   private float round_factor = 48;
+  
+  public void set_textsize(int x) {
+    this.text_size = x;
+  }
+  
+  // Additional Functionalities to use an image for a button (instead of text)
+  public boolean is_image = false;
+  public PImage default_image = null;
+  public PImage click_image = null;
+  public PImage hover_image = null;
 
   Button(String label, UIElement target_uie, String message) {
     this.label = label;
@@ -380,6 +390,15 @@ class Button extends Component {
 
   Button(String label) {
     this(label, null, "");
+  }
+  
+  // Creates a button that displays an image instead of text
+  Button(String label, UIElement target_uie, String message, PImage default_image, PImage click_image, PImage hover_image) {
+    this(label, target_uie, message);
+    this.is_image = true;
+    this.default_image = default_image;
+    this.hover_image = hover_image;
+    this.click_image = click_image;
   }
 
   public void SetHoldMessage(UIElement target_uie, String message) {
@@ -396,22 +415,32 @@ class Button extends Component {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
-
-    if (is_clicked) {
-      pa.fill(click_color);
-    } else if (is_hovered) {
-      pa.fill(hover_color);
-    } else {
-      pa.fill(default_color);
+    
+    if(!is_image) {
+      if (is_clicked) {
+          pa.fill(click_color);} 
+      else if (is_hovered) {
+          pa.fill(hover_color);} 
+      else {
+          pa.fill(default_color);}
+      pa.noStroke();
+      pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
+  
+      pa.fill(text_color);
+      pa.textSize(text_size);
+      pa.textAlign(CENTER, CENTER);
+      pa.text(label, (bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2);
+    }
+    else { // Button is an image
+      if (is_clicked) {
+          pa.image(click_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);} 
+      else if (is_hovered) {
+          pa.image(hover_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);} 
+      else {
+          pa.image(default_image, bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);}
     }
 
-    pa.noStroke();
-    pa.rect(bbox.left, bbox.top, bbox.right-bbox.left, bbox.bot-bbox.top, round_factor);
-
-    pa.fill(text_color);
-    pa.textSize(text_size);
-    pa.textAlign(CENTER, CENTER);
-    pa.text(label, (bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2);
+    
   }
 
   void OnClickEnter() {
@@ -661,6 +690,15 @@ class CreateRoom extends Component {
     RoomWindow sb = new RoomWindow();
     PApplet.runSketch(args, sb);
   }
+  
+  public void Settings() {
+    String path = GetUIElement().applet.args[0];
+
+    String[] args = {"SideBar", path};
+    SettingsWindow sb = new SettingsWindow();
+    PApplet.runSketch(args, sb);
+  }
+  
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
