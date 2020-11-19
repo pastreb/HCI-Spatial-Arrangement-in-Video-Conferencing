@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 /*
   UIElements are the building blocks of the UI. They describe anything from buttons to images to the background...
  Every UIElement has a transform component by default, so it always has a position in the hierarchy and in space.
@@ -16,6 +18,7 @@ class UIElement {
   private String name;
   public PApplet applet;
   public boolean is_active;
+  private boolean delete_flag;
   public Transform transform;
   public ArrayList<Component> components;
 
@@ -41,6 +44,7 @@ class UIElement {
     this.transform = new Transform();
     this.components = new ArrayList<Component>();
     this.AddComponent(transform);
+    this.delete_flag = false;
   }
 
   public void AddComponent(Component c) {
@@ -71,11 +75,26 @@ class UIElement {
     this.is_active = active;
   }
 
-  public void DebugRender() {
-    transform.DebugRender();
+  public ArrayList<UIElement> GetChildren(ArrayList<UIElement> buf) {
+    for (Transform t : transform.children) {
+      buf.add(t.GetUIElement());
+    }
+    return buf;
   }
 
-  public void Update(boolean draw_debug) {
+  public ArrayList<UIElement> GetAllChildren(ArrayList<UIElement> buf) {
+    if (!delete_flag) {
+      buf.add(this);
+
+      for (Transform t : transform.children) {
+        t.GetUIElement().GetAllChildren(buf);
+      }
+    }
+
+    return buf;
+  }
+
+  public void Update() {
     if (!is_active) {
       return;
     }
@@ -85,18 +104,44 @@ class UIElement {
         c.Update();
       }
     }
+  }
 
-    if (draw_debug) {
-      DebugRender();
+  public void CollisionUpdate() {
+    if (!is_active) {
+      return;
     }
 
-    for (Transform c : transform.children) {
-      c.ui_element.Update(draw_debug);
+    for (Component c : components) {
+      if (c != null) {
+        c.CollisionUpdate();
+      }
     }
   }
 
-  public void Update() {
-    Update(false);
+  public void Render(boolean draw_debug) {
+    if (!is_active) {
+      return;
+    }
+
+    for (Component c : components) {
+      if (c != null) {
+        c.Render();
+      }
+    }
+
+    if (draw_debug) {
+      transform.DebugRender();
+    }
+  }
+
+  public void Delete() {
+    delete_flag = true;
+    Transform p = transform.parent;
+
+    for (Transform c : transform.children) {
+      // c.GetUIElement().Delete();
+
+    }
   }
 }
 
@@ -109,24 +154,43 @@ class UIElement {
 
 class Canvas extends UIElement {
   private color bg_color;
+  private ArrayList<UIElement> elements;
 
   Canvas(PApplet applet, color c) {
     super(applet, "canvas");
 
     bg_color = c;
+    elements = new ArrayList<UIElement>();
     this.transform.position = new Rect(0, 0, applet.width, applet.height);
     applet.getSurface().setResizable(true);
   }
 
-  public void Update(boolean draw_debug) {
-    applet.background(bg_color);
-    transform.position = new Rect(0, 0, applet.width, applet.height);
+  public void Run(boolean debug_render) {
+    elements = new ArrayList<UIElement>();
+    GetAllChildren(elements);
 
-    super.Update(draw_debug);
+    for (UIElement e : elements) {
+      if (e.delete_flag) {
+        e.transform.SetParent(null);
+      }
+    }
+
+    for (int i = elements.size() - 1; i>=0; i--) { 
+      elements.get(i).CollisionUpdate();
+    }
+
+    for (UIElement e : elements) {
+      e.Update();
+    }
+
+    for (UIElement e : elements) {
+      e.Render(debug_render);
+    }
   }
 
-  public void Update() {
-    Update(false);
+  public void Render(boolean debug_render) {
+    applet.background(bg_color);
+    transform.position = new Rect(0, 0, applet.width, applet.height);
   }
 }
 
@@ -141,15 +205,17 @@ class Canvas extends UIElement {
 public Object CallByName(Object obj, String method_name, Object[] args) {
   try {
     Class[] t = new Class[args.length];
-    for(int i=0;i<args.length;i++){
+    for (int i=0; i<args.length; i++) {
       t[i] = args[i].getClass();
     }
-    
+
     java.lang.reflect.Method m = obj.getClass().getMethod(method_name, t);
+
     return m.invoke(obj, args);
   }
   catch (Exception e) {
-    if(method_name == "OnCollisionEnter"){
+    if (method_name == "CreateBreakoutWindow") {
+      // println(args);
       // println(((Component)obj).GetUIElement().name);
       // println(e);
     }

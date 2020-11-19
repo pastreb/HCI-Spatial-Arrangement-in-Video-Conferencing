@@ -1,5 +1,5 @@
 class SidebarWindow extends PApplet {
-  private UIElement root;
+  private Canvas root;
   public boolean debug = false;  // Disable this if you don't want the green boundary rectangles.
   private String path;
 
@@ -45,14 +45,14 @@ class SidebarWindow extends PApplet {
     UIElement create_room_button = new UIElement(this, footer.transform, new Rect(16, -24, 191, 24), new Rect(0, 0, 0, 0));
     create_room_button.AddComponent(new Button("CREATE ROOM", create_room_button, "Create"));
     create_room_button.AddComponent(new Collider());
-    create_room_button.AddComponent(new CreateRoom());
+    create_room_button.AddComponent(new UtilFunctions());
 
     // Button that opens the settings
     UIElement settings_button = new UIElement(this, footer.transform, new Rect(-66, -66, -22, -22), new Rect(1, 1, 1, 1));
     // settings_button.AddComponent(new Panel(#ff0000)); Use for debugging: Highlights the location of the settings button
     settings_button.AddComponent(new Button("SETTINGS", settings_button, "Settings", loadImage(path + "/images/settings_default.png"), loadImage(path + "/images/settings_click.png"), loadImage(path + "/images/settings_hover.png")));
     settings_button.AddComponent(new Collider());
-    settings_button.AddComponent(new CreateRoom());
+    settings_button.AddComponent(new UtilFunctions());
 
     loadImage(path + "/images/baseline_account.png");
 
@@ -61,14 +61,14 @@ class SidebarWindow extends PApplet {
   }
 
   public void draw() {
-    root.Update(debug);
+    root.Run(debug);
   }
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
 class SettingsWindow extends PApplet {
-  private UIElement root;
+  private Canvas root;
   public boolean debug = false;  // Disable this if you don't want the green boundary rectangles.
   private String path;
 
@@ -211,7 +211,7 @@ class SettingsWindow extends PApplet {
   }
 
   public void draw() {
-    root.Update(debug);
+    root.Run(debug);
   }
 
   public void exit() {
@@ -222,8 +222,8 @@ class SettingsWindow extends PApplet {
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
 class RoomWindow extends PApplet {
-  private UIElement root;
-  public boolean debug = true;  // Disable this if you don't want the green boundary rectangles
+  private Canvas root;
+  public boolean debug = false;  // Disable this if you don't want the green boundary rectangles
   private String path;
 
   public void settings() {
@@ -233,9 +233,12 @@ class RoomWindow extends PApplet {
 
   public void setup() {
     root = new Canvas(this, #292929);
+    Button b;
 
     UIElement footer = new UIElement(this, root.transform, new Rect(0, -88, 0, 0), new Rect(0, 1, 1, 1));
     footer.AddComponent(new Panel(#121212));
+
+    UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
 
     UIElement room_name_label = new UIElement(this, footer.transform, new Rect(16, 0, 260, 0), new Rect(0, 0.6, 0, 0.9));
     room_name_label.AddComponent(new TextLabel("Human Computer Interaction", #FFFFFF, 16));
@@ -244,10 +247,13 @@ class RoomWindow extends PApplet {
     room_id_label.AddComponent(new TextLabel("ROOM ID: 1234", #707070, 10));
 
     UIElement create_b_room_button = new UIElement(this, footer.transform, new Rect(16, -24, 260, 24), new Rect(0, 0, 0, 0));
-    create_b_room_button.AddComponent(new Button("CREATE BREAKOUT ROOM"));
+    b = new Button("CREATE BREAKOUT ROOM");
+    b.SetClickMessage(create_b_room_button, "CreateBreakoutWindow", (PApplet)this, user_canvas);
+    create_b_room_button.AddComponent(b);
     create_b_room_button.AddComponent(new Collider());
+    create_b_room_button.AddComponent(new UtilFunctions());
 
-    UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
+
 
     UIElement user_a = new UIElement(this, "max", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
     user_a.AddComponent(new UserBubble("Max Mustermann"));
@@ -258,14 +264,11 @@ class RoomWindow extends PApplet {
     user_b.AddComponent(new Collider());
     // Note: If you load an image from disk, take the absolute path, not the relative path. PApplet messes with the relative path in Processing 3.
 
-    UIElement b_room_1 = new UIElement(this, "breakout room 1", user_canvas.transform, new Rect(-48, -96, 48, 96), new Rect(.7, .3, .9, .7));
-    b_room_1.AddComponent(new BreakoutWindow());
-
     println("initialized room UI");
   }
 
   public void draw() {
-    root.Update(debug);
+    root.Run(debug);
   }
 
   public void exit() {

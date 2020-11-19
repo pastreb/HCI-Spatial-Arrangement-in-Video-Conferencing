@@ -19,6 +19,12 @@ class Component {
   public void Update() {
   }
 
+  public void CollisionUpdate() {
+  }
+
+  public void Render() {
+  }
+
   public UIElement GetUIElement() {
     return ui_element;
   }
@@ -249,7 +255,7 @@ class Panel extends Component {
     this(c, 0);
   }
 
-  public void Update() {
+  public void Render() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
@@ -275,7 +281,7 @@ class Panel extends Component {
  - void OnHoverExit()   ==> The first frame where the mouse pointer is not positioned on the UIElement anymore.
  
  */
-static boolean c_lock = false;  // This lock ensures that only one collider at a time can be clicked, grabbed, etc
+boolean c_lock = false;  // This lock ensures that only one collider at a time can be clicked, grabbed, etc
 
 class Collider extends Component {
   private boolean is_hovered;
@@ -293,11 +299,10 @@ class Collider extends Component {
   }
 
 
-  public void Update() {
+  public void CollisionUpdate() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
-
     if (pa.mouseX > bbox.left && pa.mouseX < bbox.right && pa.mouseY > bbox.top && pa.mouseY < bbox.bot && !c_lock)
     {
       if (is_hovered) {
@@ -319,10 +324,11 @@ class Collider extends Component {
         }
       } else
       {
-        if (is_clicked) {
+        if (is_clicked) {          
+          ui_element.SendMessage("OnClickExit");
+
           is_clicked = false;
           c_lock = false;
-          ui_element.SendMessage("OnClickExit");
         }
       }
     } else 
@@ -336,30 +342,33 @@ class Collider extends Component {
         if (pa.mousePressed) {
           ui_element.SendMessage("OnClickUpdate");
         } else {
+          ui_element.SendMessage("OnClickExit");
+
           is_clicked = false;
           c_lock = false;
-          ui_element.SendMessage("OnClickExit");
         }
       }
     }
 
     for (Transform t2 : t.parent.children) {
-      Rect bbox2 = t2.GlobalBounds();
-      Collider col = (Collider)t2.GetUIElement().GetComponent("Collider");
-      boolean is_in = collisions.contains(t2);
+      if (!t2.GetUIElement().delete_flag) {
+        Rect bbox2 = t2.GlobalBounds();
+        Collider col = (Collider)t2.GetUIElement().GetComponent("Collider");
+        boolean is_in = collisions.contains(t2);
 
-      if (t != t2 && col != null && bbox.top <= bbox2.bot && bbox.bot >= bbox2.top && bbox.left <= bbox2.right && bbox.right >= bbox2.left) {
-        if (!is_in) {
-          // println(t.GetUIElement().name, "collided with", t2.GetUIElement().name);
-          ui_element.SendMessage("OnCollisionEnter", t2);
-          collisions.add(t2);
-        } else {
-          ui_element.SendMessage("OnCollisionUpdate", t2);
+        if (t != t2 && col != null && bbox.top <= bbox2.bot && bbox.bot >= bbox2.top && bbox.left <= bbox2.right && bbox.right >= bbox2.left) {
+          if (!is_in) {
+            // println(t.GetUIElement().name, "collided with", t2.GetUIElement().name);
+            ui_element.SendMessage("OnCollisionEnter", t2);
+            collisions.add(t2);
+          } else {
+            ui_element.SendMessage("OnCollisionUpdate", t2);
+          }
+        } else if (is_in) {
+          // println(t.GetUIElement().name, "decoupled from", t2.GetUIElement().name);
+          ui_element.SendMessage("OnCollisionExit", t2);
+          collisions.remove(t2);
         }
-      } else if (is_in) {
-        // println(t.GetUIElement().name, "decoupled from", t2.GetUIElement().name);
-        ui_element.SendMessage("OnCollisionExit", t2);
-        collisions.remove(t2);
       }
     }
   }
@@ -383,6 +392,10 @@ class Button extends Component {
   private String click_message;
   private String hold_message;
   private String release_message;
+  private Object[] click_args;
+  private Object[] hold_args;
+  private Object[] release_args;
+
 
   // Styling fields
   private String label;
@@ -409,6 +422,7 @@ class Button extends Component {
     this.is_clicked = false;
     this.click_target_uie = target_uie;
     this.click_message = message;
+    this.click_args = new Object[0];
   }
 
   Button(String label) {
@@ -428,22 +442,28 @@ class Button extends Component {
     this("", null, "");
   }
 
-  public void SetClickMessage(UIElement target_uie, String message) {
+  public void SetClickMessage(UIElement target_uie, String message, Object... args) {
     this.click_target_uie = target_uie;
     this.click_message = message;
+    this.click_args = args;
   }
 
-  public void SetHoldMessage(UIElement target_uie, String message) {
+  public void SetHoldMessage(UIElement target_uie, String message, Object... args) {
     this.hold_target_uie = target_uie;
     this.hold_message = message;
+    this.hold_args = args;
   }
 
-  public void SetReleaseMessage(UIElement target_uie, String message) {
+  public void SetReleaseMessage(UIElement target_uie, String message, Object... args) {
     this.release_target_uie = target_uie;
     this.release_message = message;
+    this.release_args = args;
   }
 
   public void Update() {
+  }
+
+  public void Render() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
@@ -479,14 +499,14 @@ class Button extends Component {
     println("Clicked button", label);
     is_clicked = true;
     if (click_target_uie != null) {
-      click_target_uie.SendMessage(click_message);
+      click_target_uie.SendMessage(click_message, click_args);
     }
   }
 
   void OnClickUpdate() {
     if (hold_target_uie != null) {
       // println("Holding button", label);
-      hold_target_uie.SendMessage(hold_message);
+      hold_target_uie.SendMessage(hold_message, hold_args);
     }
   }
 
@@ -494,7 +514,7 @@ class Button extends Component {
     is_clicked = false;
     if (release_target_uie != null) {
       println("Released button", label);
-      release_target_uie.SendMessage(release_message);
+      release_target_uie.SendMessage(release_message, release_args);
     }
   }
 
@@ -541,7 +561,7 @@ class TextLabel extends Component {
     this.label = label;
   }
 
-  public void Update() {
+  public void Render() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
@@ -576,6 +596,7 @@ class UserBubble extends Component {
   private int speech_ring_weight = 5;
 
   private UIElement potential_b_room;
+  private UIElement current_b_room;
 
   private UIElement name_bubble;
   private UIElement level_bubble;
@@ -655,6 +676,9 @@ class UserBubble extends Component {
   }
 
   public void Update() {
+  }
+
+  public void Render() {
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;
@@ -705,9 +729,9 @@ class UserBubble extends Component {
     PApplet pa = GetUIElement().applet;
 
     Rect ca = t.anchor;
-    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
+    PVector o = PVector.sub(t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY)), t.parent.RelativeFromAbsolute(new PVector(pa.pmouseX, pa.pmouseY)));
     ca.Translate(o);
-    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
+    // ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
   }
 
   public void OnClickEnter() {
@@ -719,6 +743,23 @@ class UserBubble extends Component {
   }
 
   public void OnClickExit() {
+
+    PApplet pa = GetUIElement().applet;
+
+    if (current_b_room != null) {
+      Rect bbox = current_b_room.transform.GlobalBounds();
+
+      if ((pa.mouseX < bbox.left || pa.mouseX > bbox.right || pa.mouseY < bbox.top || pa.mouseY > bbox.bot)) {
+        ((BreakoutWindow)current_b_room.GetComponent("BreakoutWindow")).RemoveUser(GetUIElement());
+        current_b_room = null;
+      }
+    }
+
+    if (potential_b_room != null) {
+      ((BreakoutWindow)potential_b_room.GetComponent("BreakoutWindow")).AddUser(GetUIElement());
+      current_b_room = potential_b_room;
+      potential_b_room = null;
+    }
   }
 
   public void OnCollisionEnter(Transform other) {
@@ -737,13 +778,14 @@ class UserBubble extends Component {
 // -----------------------------------------------------------------------------------------------------------------------------------------
 
 // Utility comonent that defines the functionality when pressing the "CREATE ROOM" button.
-class CreateRoom extends Component {
+class UtilFunctions extends Component {
   public void Create() {
     String path = GetUIElement().applet.args[0];
 
     String[] args = {"SideBar", path};
     RoomWindow sb = new RoomWindow();
     PApplet.runSketch(args, sb);
+    println("Opening Room window");
   }
 
   public void Settings() {
@@ -752,6 +794,13 @@ class CreateRoom extends Component {
     String[] args = {"SideBar", path};
     SettingsWindow sb = new SettingsWindow();
     PApplet.runSketch(args, sb);
+    println("Opening Settings");
+  }
+
+  public void CreateBreakoutWindow(RoomWindow applet, UIElement parent) {
+    UIElement b_room_1 = new UIElement(applet, "breakout room 1", parent.transform, new Rect(-48, -96, 48, 96), new Rect(.7, .3, .9, .7));
+    b_room_1.AddComponent(new BreakoutWindow());
+    println("Creating Breakout room UIElement");
   }
 }
 
@@ -766,39 +815,27 @@ class BreakoutWindow extends Component {
   private color background_color;
   private String name;
   private float rounding_factor = 0;
+  private boolean close_flag;
 
   private ArrayList<UIElement> users;
-  private UIElement user_to_add;
 
   BreakoutWindow(String name, color c) {
     this.background_color = c;
     this.name = name;
 
     this.users = new ArrayList<UIElement>();
-    this.user_to_add = null;
+    this.close_flag = false;
   }
 
   BreakoutWindow() {
     this("New Room", #121212);
   }
 
-  public void Move() {
-    println("dragging");
-    Transform t = GetUIElement().transform;
-    Rect bbox = t.GlobalBounds();
-    PApplet pa = GetUIElement().applet;
-
-    Rect ca = t.anchor;
-    PVector o = t.parent.RelativeFromAbsolute(new PVector(pa.mouseX - pa.pmouseX, pa.mouseY - pa.pmouseY));
-    ca.Translate(o);
-    ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
-  }
-
   public void Start() {
     UIElement puie = GetUIElement();
     Button b;
 
-    // puie.AddComponent(new Collider());
+    puie.AddComponent(new Collider());
 
     background_panel = new UIElement(puie.applet, puie.transform, new Rect(0, 0, 1, 1));
     background_panel.AddComponent(new Panel(background_color, rounding_factor));
@@ -811,7 +848,11 @@ class BreakoutWindow extends Component {
     room_name.AddComponent(new Collider());
 
     close_button = new UIElement(puie.applet, background_panel.transform, new Rect(-32, 0, 0, 32), new Rect(1, 0, 1, 0));
-    close_button.AddComponent(new TextLabel("X", #DBB2FF, 16, CENTER, CENTER));
+    b = new Button("X");
+    //close_button.AddComponent(new TextLabel("X", #DBB2FF, 16, CENTER, CENTER));
+    b.SetReleaseMessage(puie, "Close");
+    close_button.AddComponent(b);
+    close_button.AddComponent(new Collider());
 
 
     screen_share_button = new UIElement(puie.applet, background_panel.transform, new Rect(4, -52, 188, -4), new Rect(0, 1, 0, 1));
@@ -819,6 +860,59 @@ class BreakoutWindow extends Component {
     screen_share_button.AddComponent(new Button("SHARE SCREEN"));
   }
 
+  public void Move() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    Rect ca = t.anchor;
+    PVector o = PVector.sub(t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY)), t.parent.RelativeFromAbsolute(new PVector(pa.pmouseX, pa.pmouseY)));
+    ca.Translate(o);
+    // ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
+  }
+
+  public void Close() {
+    Transform p = GetUIElement().transform.parent;
+    println("Closing breakout room");
+    for (UIElement user : users) {
+      Rect bbox = user.transform.GlobalBounds();
+      PVector pos = p.RelativeFromAbsolute(new PVector((bbox.left + bbox.right)/2, (bbox.top + bbox.bot)/2));
+      user.transform.SetParent(p);
+      user.transform.anchor = new Rect(pos.x, pos.y, pos.x, pos.y);
+      
+    }
+    close_flag = true;
+  }
+
+  public void AddUser(UIElement user) {
+    Transform t = GetUIElement().transform;
+    PApplet pa = GetUIElement().applet;
+
+    user.transform.SetParent(GetUIElement().transform);
+    users.add(user);
+    // t.anchor = new Rect(.5, .5, .5, .5);
+
+    PVector p = t.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY));
+    user.transform.anchor = new Rect(p.x, p.y, p.x, p.y);
+    println(user.name, "entered", GetUIElement().name);
+  }
+
+  public void RemoveUser(UIElement user) {
+    Transform t = GetUIElement().transform.parent;
+    PApplet pa = GetUIElement().applet;
+
+    user.transform.SetParent(t);
+    users.remove(user);
+    // t.anchor = new Rect(.5, .5, .5, .5);
+
+    PVector p = t.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY));
+    user.transform.anchor = new Rect(p.x, p.y, p.x, p.y);
+    println(user.name, "entered", t.GetUIElement().name);
+  }
+
   public void Update() {
+    if (close_flag) {
+      GetUIElement().Delete();
+    }
   }
 }
