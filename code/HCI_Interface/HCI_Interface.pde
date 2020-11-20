@@ -12,6 +12,7 @@ void setup() {
   
   String[] args = {"SideBar", sketchPath()};
   SidebarWindow sb = new SidebarWindow();
+
   PApplet.runSketch(args, sb);
 }
 

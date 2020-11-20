@@ -73,6 +73,9 @@ class UIElement {
 
   public void SetActive(boolean active) {
     this.is_active = active;
+    for(Transform c : transform.children){
+      c.GetUIElement().SetActive(active);
+    }
   }
 
   public ArrayList<UIElement> GetChildren(ArrayList<UIElement> buf) {
