@@ -68,6 +68,16 @@ class Rect {
     right = (right - mx) * x + mx;
   }
 
+    public void Scale(PVector x) {
+    float mx = (left + right) / 2;
+    float my = (top + bot) / 2;
+
+    top = (top - my) * x.y + my;
+    bot = (bot - my) * x.y + my;
+    left = (left - mx) * x.x + mx;
+    right = (right - mx) * x.x + mx;
+  }
+
   public void ClampRect(Rect r) {
     top = min(max(top, r.top), r.bot);
     bot = min(max(bot, r.top), r.bot);

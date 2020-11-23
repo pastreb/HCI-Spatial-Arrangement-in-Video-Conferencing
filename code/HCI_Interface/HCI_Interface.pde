@@ -1,7 +1,7 @@
 /*
   
  */
-public String version = "0.1.a";
+public String version = "0.1.d";
 
 void settings() {
   println("version:", version);

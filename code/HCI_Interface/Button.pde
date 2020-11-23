@@ -84,6 +84,22 @@ class Button extends Component {
     this.release_args = args;
   }
 
+  public void SetDefaultImage(PImage img) {
+    this.default_image = img;
+  }
+
+  public void SetHoverImage(PImage img) {
+    this.hover_image = img;
+  }
+
+  public void SetClickImage(PImage img) {
+    this.click_image = img;
+  }
+
+  public void SetLabel(String lbl){
+    this.label = lbl;
+  }
+
   public void Start(){
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
@@ -102,14 +118,17 @@ class Button extends Component {
   }
 
   public void Update() {
-    PImage img;
-    color clr;
+    PImage img = default_image;
+    color clr = default_color;
 
     if (is_hovered){
-      img = hover_image;
+      if(hover_image != null) img = hover_image;
       clr = hover_color;
+    } else if(is_clicked){
+      if(click_image != null) img = click_image;
+      clr = click_color;
     } else {
-      img = default_image;
+      if(default_image != null) img = default_image;
       clr = default_color;
     }
 

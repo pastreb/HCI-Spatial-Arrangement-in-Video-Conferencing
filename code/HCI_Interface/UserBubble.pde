@@ -1,3 +1,5 @@
+import processing.video.*;
+
 // Displays a user as a bubble
 // Can be moved around when clicked
 // NOTE: fOR THIS COMPONENT TO WORK PROPERLY, ADD A COLLIDER TO THE UIELEMENT!!!
@@ -9,9 +11,13 @@
 
 class UserBubble extends Component {
   public PImage image;
+  public Movie video;
+  public Movie cam;
+
   public String name;
-  public int level;
+  public float level;
   private boolean is_screensharing;
+  private boolean has_cam;
   public boolean is_speaking;
   public boolean show_buttons;
 
@@ -31,6 +37,11 @@ class UserBubble extends Component {
   private UIElement resize_button;
   private UIElement move_button;
 
+  private float inactive_start;
+  private float inactive_threshold = 3000;
+
+  private PermissionDisplay pdp;
+
   UserBubble(String name, PImage image, int level) {
     this.name = name;
     this.image = image;
@@ -38,9 +49,11 @@ class UserBubble extends Component {
 
     this.is_speaking = false;
     this.is_screensharing = false;
+    this.has_cam = false;
     this.show_buttons = true;
 
     this.potential_b_room = null;
+
   }
 
   UserBubble(String name) {
@@ -56,15 +69,103 @@ class UserBubble extends Component {
     this.image = image;
   }
 
+  public void SetVideo(Movie video){
+    this.video = video;
+  }
+
+  public void SetCam(Movie cam){
+    this.cam = cam;
+  }
+
+  public int GetLvl(){
+    return (int)level;
+  }
+
+  public String GetName(){
+    return name;
+  }
+
+  public void SetPermissionDisplay(PermissionDisplay pdp){
+    this.pdp = pdp;
+  }
+
   public void BeginScreenshare(){
+    if(is_screensharing) return;
+
+    Rect pos = GetUIElement().transform.position;
+
+    EndCam();
     this.is_screensharing = true;
     ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetMode(ImageDisplayMode.ROUNDRECT);
+    pos.Set(pos.left * 32/25, pos.top * 18/25, pos.right * 32/25, pos.bot * 18/25);
+
+    // Temp screen sharing code for mockup
+    video = new Movie(GetUIElement().applet, ((RoomWindow)GetUIElement().applet).path + "/videos/screen_capture_lecture.mp4");
+    if(video != null){
+      video.play();
+    }
+    is_speaking = true;
   }
 
   public void EndScreenshare() {
+    if(!is_screensharing) return;
+
+    Rect pos = GetUIElement().transform.position;
+
     this.is_screensharing = false;
     ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetMode(ImageDisplayMode.CIRCLE);
+    float x = sqrt(pos.left * pos.top);
+    pos.Set(-x, -x, x, x);
 
+    // Temp screen sharing code for mockup
+    if(video != null){
+      video.stop();
+    }
+
+    if(cam != null){
+      cam.stop();
+    }
+
+    is_speaking = false;
+
+  }
+
+  public void StartCam(){
+    if(has_cam || is_screensharing) return;
+
+    Rect pos = GetUIElement().transform.position;
+
+    this.has_cam = true;
+    ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetMode(ImageDisplayMode.ROUNDRECT);
+    pos.Set(pos.left * 32/25, pos.top * 18/25, pos.right * 32/25, pos.bot * 18/25);
+
+    // Temp screen sharing code for mockup
+    cam = new Movie(GetUIElement().applet, ((RoomWindow)GetUIElement().applet).path + "/videos/woman_talking_videocall.mp4");
+
+    if(cam != null){
+      cam.play();
+      cam.loop();
+    }
+
+    is_speaking = true;
+  }
+
+  public void EndCam(){
+    if(!has_cam) return;
+
+    Rect pos = GetUIElement().transform.position;
+
+    has_cam = false;
+    ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetMode(ImageDisplayMode.CIRCLE);
+    float x = sqrt(pos.left * pos.top);
+    pos.Set(-x, -x, x, x);
+
+    // Temp screen sharing code for mockup
+    if(cam != null){
+      cam.stop();
+    }
+
+    is_speaking = false;
   }
 
   public void SetButtonsActive(boolean active) {
@@ -74,6 +175,39 @@ class UserBubble extends Component {
     level_button.SetActive(show_buttons);
     resize_button.SetActive(show_buttons);
     move_button.SetActive(show_buttons);
+  }
+
+
+  public void Resize() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    float sensitivity = 0.004;
+    float delta = pa.pmouseY - pa.mouseY;
+
+    t.position.Scale(1 + delta * sensitivity);
+  }
+
+  public void Move() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    Rect ca = t.anchor;
+    PVector o = PVector.sub(t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY)), t.parent.RelativeFromAbsolute(new PVector(pa.pmouseX, pa.pmouseY)));
+    ca.Translate(o);
+    // ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
+  }
+
+  public void UpdateLevel(){
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    float sensitivity = 0.04;
+    float delta = pa.pmouseY - pa.mouseY;
+    this.level = min(max(level + sensitivity * delta, 0), 100);
   }
 
   // Code for updating/rendering. Ignore this code if you only want to change the appearance of the UIElement
@@ -98,7 +232,9 @@ class UserBubble extends Component {
 
     level_button = new UIElement(puie.applet, puie.transform, new Rect(-96, -32, -4, 0), new Rect(0, .5, 0, .5));
     level_button.AddComponent(new Collider());
-    level_button.AddComponent(new Button("LEVEL"));
+    b = new Button("LEVEL");
+    b.SetHoldMessage(puie, "UpdateLevel");
+    level_button.AddComponent(b);
 
     resize_button = new UIElement(puie.applet, puie.transform, new Rect(-96, 8, -4, 40), new Rect(0, .5, 0, .5));
     resize_button.AddComponent(new Collider());
@@ -113,6 +249,7 @@ class UserBubble extends Component {
     move_button.AddComponent(b);
 
     SetButtonsActive(false);
+
   }
 
   public void Update() {
@@ -120,10 +257,23 @@ class UserBubble extends Component {
       image = loadImage("images/baseline_account.png");
     }
 
-    ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetImage(image);
+    if(is_screensharing){
+      ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetVideo(video);
+    } else if(has_cam){
+      ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetCam(cam);
+    } else {
+      ((ImagePanel)image_panel.GetComponent("ImagePanel")).SetImage(image);
+
+    }
     ((TextLabel)name_bubble.GetComponent("TextLabel")).SetLabel(name);
-    ((TextLabel)level_bubble.GetComponent("TextLabel")).SetLabel(str(level));
-  }
+    ((TextLabel)level_bubble.GetComponent("TextLabel")).SetLabel(str((int)level));
+
+    if(GetUIElement().applet.millis() - inactive_start > inactive_threshold){
+      // SetButtonsActive(false);
+    }
+
+
+    }
 
   public void Render() {
     Transform t = GetUIElement().transform;
@@ -138,7 +288,7 @@ class UserBubble extends Component {
       pa.stroke(not_speaking_color);
     }
 
-    if(is_screensharing){
+    if(is_screensharing || has_cam){
       pa.rect(bbox.left, bbox.top, bbox.right - bbox.left, bbox.bot - bbox.top);
     }else{
       pa.ellipse((bbox.left + bbox.right) / 2, (bbox.top + bbox.bot) / 2, bbox.right - bbox.left, bbox.bot - bbox.top);
@@ -146,34 +296,20 @@ class UserBubble extends Component {
     pa.noStroke();
   }
 
-  public void Resize() {
-    Transform t = GetUIElement().transform;
-    Rect bbox = t.GlobalBounds();
-    PApplet pa = GetUIElement().applet;
-
-    float sensitivity = 0.004;
-    float delta = pa.pmouseY - pa.mouseY;
-
-    t.position.Scale(1 + delta * sensitivity);
-  }
-
-  public void Move() {
-    Transform t = GetUIElement().transform;
-    Rect bbox = t.GlobalBounds();
-    PApplet pa = GetUIElement().applet;
-
-    Rect ca = t.anchor;
-    PVector o = PVector.sub(t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY)), t.parent.RelativeFromAbsolute(new PVector(pa.pmouseX, pa.pmouseY)));
-    ca.Translate(o);
-    // ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
-  }
-
   public void OnClickEnter() {
     SetButtonsActive(!show_buttons);
+
+    if(pdp != null){
+      pdp.SetUser(GetUIElement());
+    }
   }
 
   public void OnClickUpdate() {
     Move();
+  }
+
+  public void OnHoverUpdate(){
+    inactive_start = GetUIElement().applet.millis();
   }
 
   public void OnClickExit() {
@@ -207,4 +343,5 @@ class UserBubble extends Component {
       potential_b_room = null;
     }
   }
+
 }

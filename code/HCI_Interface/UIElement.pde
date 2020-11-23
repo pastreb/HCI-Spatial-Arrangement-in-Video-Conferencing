@@ -216,12 +216,14 @@ public Object CallByName(Object obj, String method_name, Object[] args) {
 
     return m.invoke(obj, args);
   }
-  catch (Exception e) {
-    if (method_name == "CreateBreakoutWindow") {
-      // println(args);
-      // println(((Component)obj).GetUIElement().name);
-      // println(e);
-    }
+  catch (NoSuchMethodException e) {
+    return null;
+  }
+  catch (IllegalAccessException e) {
+    return null;
+
+  }
+  catch (java.lang.reflect.InvocationTargetException e) {
     return null;
   }
 }

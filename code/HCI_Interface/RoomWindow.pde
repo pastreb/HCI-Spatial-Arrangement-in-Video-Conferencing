@@ -1,4 +1,4 @@
-class RoomWindow extends PApplet {
+public class RoomWindow extends PApplet {
   private Canvas root;
   public boolean debug = false;  // Disable this if you don't want the green boundary rectangles
   private String path;
@@ -11,11 +11,17 @@ class RoomWindow extends PApplet {
   public void setup() {
     root = new Canvas(this, #292929);
     Button b;
+    UserBubble ub;
+
+    UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
+
 
     UIElement footer = new UIElement(this, root.transform, new Rect(0, -88, 0, 0), new Rect(0, 1, 1, 1));
     footer.AddComponent(new Panel(#121212));
 
-    UIElement user_canvas = new UIElement(this, root.transform, new Rect(0, 0, 0, -88), new Rect(0, 0, 1, 1));
+    UIElement permission_display = new UIElement(this, user_canvas.transform, new Rect(48, 48, 512, 360), new Rect(0, 0, 0, 0));
+    PermissionDisplay pdp = new PermissionDisplay();
+    permission_display.AddComponent(pdp);
 
     UIElement room_name_label = new UIElement(this, footer.transform, new Rect(16, 0, 260, 0), new Rect(0, 0.6, 0, 0.9));
     room_name_label.AddComponent(new TextLabel("Human Computer Interaction", #FFFFFF, 16));
@@ -30,16 +36,25 @@ class RoomWindow extends PApplet {
     create_b_room_button.AddComponent(new Collider());
     create_b_room_button.AddComponent(new UtilFunctions());
 
-
-
     UIElement user_a = new UIElement(this, "max", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.5, .5, .5, .5));
-    user_a.AddComponent(new UserBubble("Max Mustermann"));
+    ub = new UserBubble("Max Mustermann");
+    ub.SetPermissionDisplay(pdp);
+    user_a.AddComponent(ub);
     user_a.AddComponent(new Collider());
 
     UIElement user_b = new UIElement(this, "pepe", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.3, .5, .3, .5));
-    user_b.AddComponent(new UserBubble("Pepe the frog", loadImage(path + "/images/pepe.png"), 100));
+    ub = new UserBubble("Pepe the frog", loadImage(path + "/images/pepe.png"), 100);
+    user_b.AddComponent(ub);
+    ub.SetPermissionDisplay(pdp);
     user_b.AddComponent(new Collider());
+
+    UIElement user_c = new UIElement(this, "pepe", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.7, .5, .7, .5));
+    ub = new UserBubble("Barnabus Stinson", null, 50);
+    ub.SetPermissionDisplay(pdp);
+    user_c.AddComponent(ub);
+    user_c.AddComponent(new Collider());
     // Note: If you load an image from disk, take the absolute path, not the relative path. PApplet messes with the relative path in Processing 3.
+    ub.StartCam();
 
     println("initialized room UI");
   }
@@ -50,5 +65,11 @@ class RoomWindow extends PApplet {
 
   public void exit() {
     dispose();
+  }
+
+  void movieEvent(Movie m){
+    if(m.available()){
+      m.read();
+    }
   }
 }

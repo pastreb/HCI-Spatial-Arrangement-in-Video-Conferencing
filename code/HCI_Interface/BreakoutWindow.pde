@@ -1,7 +1,10 @@
+import processing.video.*;
+
 class BreakoutWindow extends Component {
   private UIElement background_panel;
   private UIElement room_name;
   private UIElement close_button;
+  private UIElement resize_button;
   private UIElement screen_share_button;
 
   private color background_color;
@@ -26,6 +29,7 @@ class BreakoutWindow extends Component {
   public void Start() {
     UIElement puie = GetUIElement();
     Button b;
+    String path = ((RoomWindow)puie.applet).path;
 
     puie.AddComponent(new Collider());
 
@@ -41,10 +45,16 @@ class BreakoutWindow extends Component {
 
     close_button = new UIElement(puie.applet, background_panel.transform, new Rect(-32, 0, 0, 32), new Rect(1, 0, 1, 0));
     b = new Button("X");
-    //close_button.AddComponent(new TextLabel("X", #DBB2FF, 16, CENTER, CENTER));
     b.SetReleaseMessage(puie, "Close");
     close_button.AddComponent(b);
     close_button.AddComponent(new Collider());
+
+    resize_button = new UIElement(puie.applet, background_panel.transform, new Rect(-64, 0, -32, 32), new Rect(1, 0, 1, 0));
+    resize_button.AddComponent(new Collider());
+    b = new Button();
+    b.SetDefaultImage(loadImage(path + "/images/resize_default.png"));
+    b.SetHoldMessage(puie, "Resize");
+    resize_button.AddComponent(b);
 
 
     screen_share_button = new UIElement(puie.applet, background_panel.transform, new Rect(4, -52, 188, -4), new Rect(0, 1, 0, 1));
@@ -63,6 +73,17 @@ class BreakoutWindow extends Component {
     // ca.ClampRect(new Rect(0.05, 0.05, 0.95, 0.85));
   }
 
+    public void Resize() {
+    Transform t = GetUIElement().transform;
+    Rect bbox = t.GlobalBounds();
+    PApplet pa = GetUIElement().applet;
+
+    float sensitivity = 2;
+    PVector o = PVector.sub(t.parent.RelativeFromAbsolute(new PVector(pa.mouseX, pa.mouseY)), t.parent.RelativeFromAbsolute(new PVector(pa.pmouseX, pa.pmouseY)));
+
+    t.anchor.Scale((new PVector(1, 1)).add(o.mult(sensitivity)));
+  }
+
   public void Close() {
     Transform p = GetUIElement().transform.parent;
     println("Closing breakout room", GetUIElement().name);
@@ -71,7 +92,7 @@ class BreakoutWindow extends Component {
       PVector pos = p.RelativeFromAbsolute(new PVector((bbox.left + bbox.right)/2, (bbox.top + bbox.bot)/2));
       user.transform.SetParent(p);
       user.transform.anchor = new Rect(pos.x, pos.y, pos.x, pos.y);
-      
+      ((UserBubble)user.GetComponent("UserBubble")).EndScreenshare();
     }
     close_flag = true;
   }
@@ -81,6 +102,7 @@ class BreakoutWindow extends Component {
       return;
     }
 
+    // Temporary code for screenshare
     UserBubble ub = (UserBubble)users.get(0).GetComponent("UserBubble");
     ub.BeginScreenshare();
   }
@@ -102,7 +124,7 @@ class BreakoutWindow extends Component {
     Transform t = GetUIElement().transform.parent;
     PApplet pa = GetUIElement().applet;
 
-    ((UserBubble)users.get(0).GetComponent("UserBubble")).EndScreenshare();
+    ((UserBubble)user.GetComponent("UserBubble")).EndScreenshare();
     user.transform.SetParent(t);
     users.remove(user);
     // t.anchor = new Rect(.5, .5, .5, .5);
