@@ -198,6 +198,10 @@ To sum up, we concluded that our two prototypes perform quite similarly. The [Su
 - The user has to have the ability to resize the program window freely. This is important because they need to have the space to move other users around, resize them, ...
 - The basics of the UI are already functional, representations of users, breakout rooms, screen sharing, ... is still missing
 
+**Week 9:**
+- We extended the functionality of the UI further, especially the "user bubbles" and the breakout-rooms
+- We started building an interface in Processing that should allow us to easily communicate with the "backed" that will be coded later.
+
 (Weeks 8-14)
 
     TODO
