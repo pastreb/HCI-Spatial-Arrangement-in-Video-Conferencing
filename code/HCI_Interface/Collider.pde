@@ -30,6 +30,7 @@ class Collider extends Component {
 
 
   public void CollisionUpdate() {
+    // println(c_lock);
     Transform t = GetUIElement().transform;
     Rect bbox = t.GlobalBounds();
     PApplet pa = GetUIElement().applet;

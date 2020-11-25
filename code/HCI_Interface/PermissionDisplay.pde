@@ -2,6 +2,8 @@ class PermissionDisplay extends Component {
 	private UserBubble selected_user;
 	private TextLabel lbl;
 	private String txt;
+	private Rect full_pos;
+	private Rect collapsed_pos;
 
 	PermissionDisplay(){
 
@@ -19,6 +21,9 @@ class PermissionDisplay extends Component {
 		text_display.AddComponent(new Panel(#121212, 48));
 		lbl = new TextLabel("", #ffffff, 16, LEFT, TOP);
 		text_display.AddComponent(lbl);
+
+		full_pos = puie.transform.position;
+		collapsed_pos = new Rect(full_pos.left, full_pos.top, full_pos.left + 256,full_pos.top + 72);
 	}
 
 	public void Update(){
@@ -39,8 +44,15 @@ class PermissionDisplay extends Component {
 	}
 
 	public void Render() {
-		if(selected_user == null) return;
+		UIElement puie = GetUIElement();
 
-		lbl.SetLabel(txt);
+
+		if(selected_user == null) {
+			puie.transform.position = collapsed_pos;
+			lbl.SetLabel("\n  Permission Helper");
+		}else{
+			puie.transform.position = full_pos;
+			lbl.SetLabel(txt);
+		}
 	}
 }

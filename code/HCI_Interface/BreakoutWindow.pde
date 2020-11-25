@@ -29,7 +29,7 @@ class BreakoutWindow extends Component {
   public void Start() {
     UIElement puie = GetUIElement();
     Button b;
-    String path = ((RoomWindow)puie.applet).path;
+    // String path = ((RoomWindow)puie.applet).path;
 
     puie.AddComponent(new Collider());
 
@@ -52,7 +52,7 @@ class BreakoutWindow extends Component {
     resize_button = new UIElement(puie.applet, background_panel.transform, new Rect(-64, 0, -32, 32), new Rect(1, 0, 1, 0));
     resize_button.AddComponent(new Collider());
     b = new Button();
-    b.SetDefaultImage(loadImage(path + "/images/resize_default.png"));
+    b.SetDefaultImage(loadImage("images/resize_default.png"));
     b.SetHoldMessage(puie, "Resize");
     resize_button.AddComponent(b);
 

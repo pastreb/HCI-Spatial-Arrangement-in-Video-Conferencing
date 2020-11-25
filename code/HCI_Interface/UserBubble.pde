@@ -100,7 +100,7 @@ class UserBubble extends Component {
     pos.Set(pos.left * 32/25, pos.top * 18/25, pos.right * 32/25, pos.bot * 18/25);
 
     // Temp screen sharing code for mockup
-    video = new Movie(GetUIElement().applet, ((RoomWindow)GetUIElement().applet).path + "/videos/screen_capture_lecture.mp4");
+    video = new Movie(GetUIElement().applet, GetUIElement().applet.sketchPath() + "/videos/screen_capture_lecture.mp4");
     if(video != null){
       video.play();
     }
@@ -140,7 +140,7 @@ class UserBubble extends Component {
     pos.Set(pos.left * 32/25, pos.top * 18/25, pos.right * 32/25, pos.bot * 18/25);
 
     // Temp screen sharing code for mockup
-    cam = new Movie(GetUIElement().applet, ((RoomWindow)GetUIElement().applet).path + "/videos/woman_talking_videocall.mp4");
+    cam = new Movie(GetUIElement().applet, GetUIElement().applet.sketchPath() + "/videos/woman_talking_videocall.mp4");
 
     if(cam != null){
       cam.play();
@@ -224,7 +224,7 @@ class UserBubble extends Component {
 
     level_bubble = new UIElement(puie.applet, puie.transform, new Rect(-20, -15, 15, 20), new Rect(.9, .9, .9, .9));
     level_bubble.AddComponent(new Panel(#bb86fc, 48));
-    level_bubble.AddComponent(new TextLabel(str(level), #FFFFFF, 14, CENTER, CENTER));
+    level_bubble.AddComponent(new TextLabel(str(level), #121212, 14, CENTER, CENTER));
 
     mute_button = new UIElement(puie.applet, puie.transform, new Rect(-96, -72, -4, -40), new Rect(0, .5, 0, .5));
     mute_button.AddComponent(new Collider());
@@ -272,7 +272,7 @@ class UserBubble extends Component {
       // SetButtonsActive(false);
     }
 
-
+    SetButtonsActive(show_buttons);
     }
 
   public void Render() {
