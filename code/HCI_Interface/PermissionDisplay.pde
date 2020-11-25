@@ -10,7 +10,12 @@ class PermissionDisplay extends Component {
 	}
 
 	public void SetUser(UIElement user){
-		selected_user = (UserBubble)user.GetComponent("UserBubble");
+		if(user != null){
+			selected_user = (UserBubble)user.GetComponent("UserBubble");
+
+		}else{
+			selected_user = null;
+		}
 	}
 
 	public void Start(){

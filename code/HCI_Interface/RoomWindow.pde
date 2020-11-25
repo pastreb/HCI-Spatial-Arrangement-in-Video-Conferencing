@@ -50,8 +50,8 @@ public class RoomWindow {
     ub.SetPermissionDisplay(pdp);
     user_b.AddComponent(new Collider());
 
-    UIElement user_c = new UIElement(root.applet, "barnabus", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.7, .5, .7, .5));
-    ub = new UserBubble("Barnabus Stinson", null, 50);
+    UIElement user_c = new UIElement(root.applet, "olivia", user_canvas.transform, new Rect(-48, -48, 48, 48), new Rect(.7, .5, .7, .5));
+    ub = new UserBubble("Olivia Davis", null, 50);
     ub.SetPermissionDisplay(pdp);
     user_c.AddComponent(ub);
     user_c.AddComponent(new Collider());
