@@ -202,6 +202,10 @@ To sum up, we concluded that our two prototypes perform quite similarly. The [Su
 - We extended the functionality of the UI further, especially the "user bubbles" and the breakout-rooms
 - We started building an interface in Processing that should allow us to easily communicate with the "backed" that will be coded later.
 
+**Week 10:**
+- Finished manual frontend design.
+- Added all mockups for presentation (Profile pictures, Screenshare videos, Facecam videos)
+- Gathered ideas on what to optimize.
 (Weeks 8-14)
 
     TODO
