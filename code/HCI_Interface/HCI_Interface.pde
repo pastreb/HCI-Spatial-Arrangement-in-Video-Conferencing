@@ -1,5 +1,9 @@
 /*
-  
+	This represents the starting point of the frontent program.
+	Creates windows withing a single PApplet instance. Additionally, it provides
+	those windows with a root UIElement. It is also responsible for calling the 
+	update functions of all children UIElements.
+
  */
 public String version = "0.1.d";
 private boolean debug = false;
@@ -43,10 +47,11 @@ void draw() {
 	root.Run(debug);
 }
 
+// This method is needed by the processing video library. If a new video frame is available, it reads it.
 void movieEvent(Movie m){
-if(m.available()){
-  m.read();
-}
+	if(m.available()){
+	  m.read();
+	}
 }
 
 
