@@ -206,6 +206,7 @@ To sum up, we concluded that our two prototypes perform quite similarly. The [Su
 - Finished manual frontend design.
 - Added all mockups for presentation (Profile pictures, Screenshare videos, Facecam videos)
 - Gathered ideas on what to optimize.
+
 (Weeks 8-14)
 
     TODO
