@@ -225,7 +225,7 @@ Another brainstorming phase led to the following two ideas on how to automatical
   - There are several buttons (MUTE, LEVEL, RESIZE, MOVE) that appear upon clicking a bubble.
   - These buttons can be distributed around the bubble in many ways.
   - Optimal positions could be dynamically computed (possibly using random search) and optimized based on: 
-    - Minimum distance measurements.
+    - Minimum distances.
     - Measurements of user input such as the time that passes between clicking a bubble and the button.
     - Heuristics (e.g. “*if the bubble is on the top right corner, the buttons should appear on the side that faces to the middle of the screen.*”)
 
