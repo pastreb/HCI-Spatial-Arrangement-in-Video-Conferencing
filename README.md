@@ -195,6 +195,7 @@ To sum up, we concluded our two prototypes to perform quite similarly. The [Subj
 
 ## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
+
 Following the evaluation of our user study, we decided to keep going with combining our basic approaches of the [Level Based Permission System](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Level-based-system.pdf) and the [User-Specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png), as both these ideas met with approval among the participants. Furthermore, the design should be mostly inspired by [Prototype A](https://xd.adobe.com/view/2b2d7ce0-21a7-4684-ac29-a956077592ca-7e7e/grid).
 
 ### Hifi Manual Prototype <a name="manual"></a>
