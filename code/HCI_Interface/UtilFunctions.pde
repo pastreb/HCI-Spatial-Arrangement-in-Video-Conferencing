@@ -34,4 +34,8 @@ class UtilFunctions extends Component {
     sw_root.SetActive(false);
     println("Closing Settings");
   }
+
+  public void CreateUser(RoomWindow rw){
+    rw.UserJoin(new User("Max Mustermann"), 100);
+  }
 }
