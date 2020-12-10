@@ -45,6 +45,7 @@ void setup() {
 
 void draw() {
 	root.Run(debug);
+  rw.Finalize();
 }
 
 // This method is needed by the processing video library. If a new video frame is available, it reads it.

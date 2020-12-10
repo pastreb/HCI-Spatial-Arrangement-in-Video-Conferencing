@@ -17,6 +17,7 @@ public class RoomWindow {
   private User usr_buf;
   private int lvl_buf;
   private boolean buf_lock;
+  private OscMessage buf_m;
 
   public void settings() {
     // size(1400, 1000);
@@ -63,7 +64,7 @@ public class RoomWindow {
 
     UIElement create_user_button = new UIElement(root.applet, footer.transform, new Rect(-140, -24, -16, 24), new Rect(1, 0, 1, 0));
     b = new Button("CREATE USER");
-    b.SetClickMessage(create_user_button, "CreateUser", this);
+    b.SetReleaseMessage(create_user_button, "CreateUser", this);
     create_user_button.AddComponent(b);
     create_user_button.AddComponent(new Collider());
     create_user_button.AddComponent(new UtilFunctions());
@@ -79,7 +80,7 @@ public class RoomWindow {
   }
 
   public void UserJoin(User u, int level){
-    // if(buf_lock) return;
+    if(buf_lock) return;
 
     buf_lock = true;
     usr_buf = u;
@@ -91,19 +92,23 @@ public class RoomWindow {
     table.addColumn("radius");
 
     Rect canvas_bounds = user_canvas.transform.GlobalBounds();
-    float t_height = canvas_bounds.bot - canvas_bounds.top;
+    float c_height = canvas_bounds.bot - canvas_bounds.top;
+    float c_width = canvas_bounds.right - canvas_bounds.left;
 
     for(UIElement uie : bubbles.values()){
       TableRow r = table.addRow();
-      r.setFloat("xpos", uie.transform.anchor.left);
-      r.setFloat("ypos", uie.transform.anchor.top);
-      r.setFloat("radius", uie.transform.position.bot / t_height);
+      r.setInt("xpos", (int)(uie.transform.anchor.left * c_width));
+      r.setInt("ypos", (int)(uie.transform.anchor.top * c_height));
+      r.setInt("radius", (int)(uie.transform.position.bot));
     }
 
     saveTable(table, "userpositions.csv");
 
     OscMessage m = new OscMessage("");
     m.add("user_joined");
+    m.add("width: " + (int)c_width);
+    m.add("height: " + (int)c_height);
+    m.add("user_radius: 48");
     oscP5.send(m, remote_loc);
   }
 
@@ -126,11 +131,24 @@ public class RoomWindow {
 
   /* incoming osc message are forwarded to the oscEvent method. */
   void oscEvent(OscMessage theOscMessage) {
+    buf_m = theOscMessage;
+
+    buf_lock = false;
+  }
+
+  public void Finalize(){
+    if(buf_m == null) return;
+
     /* print the address pattern and the typetag of the received OscMessage */
-    println("typetag: " + theOscMessage.typetag()); 
-    println("message" + theOscMessage.get(0).stringValue());
+    println("typetag: " + buf_m.typetag()); 
+    println(buf_m.get(0).stringValue());
+    println(buf_m.get(1).stringValue());
+    println(buf_m.get(2).stringValue());
+    println(buf_m.get(3).stringValue());
 
 
     UserJoin(usr_buf, lvl_buf, new PVector(0.5, 0.5), 48);
+
+    buf_m = null;
   }
 }
