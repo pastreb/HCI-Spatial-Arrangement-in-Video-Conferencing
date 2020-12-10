@@ -12,10 +12,10 @@ class OSC:
         self.ip = "127.0.0.1"
 
         # the port we receive data from processing on
-        self.receiving_port = 12001
+        self.receiving_port = 12000
 
         # the port where processing expects data to be send.
-        self.sending_port = 12000
+        self.sending_port = 12001
 
         # OSC works with addresses. Basically we can filter on the incoming address and have different handler based on an address.
         # in a case we dont recoginize the address, we use the default handler.

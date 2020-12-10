@@ -28,7 +28,7 @@ public class RoomWindow {
     this.root = root;
 
     buf_lock = false;
-    oscP5 = new OscP5(this, 12000);
+    oscP5 = new OscP5(this, 12001);
     remote_loc = new NetAddress("127.0.0.1", 12000);
 
     root.AddComponent(new Panel(#292929));
@@ -80,7 +80,7 @@ public class RoomWindow {
   }
 
   public void UserJoin(User u, int level){
-    if(buf_lock) return;
+    // if(buf_lock) return;
 
     buf_lock = true;
     usr_buf = u;
@@ -104,7 +104,7 @@ public class RoomWindow {
 
     saveTable(table, "userpositions.csv");
 
-    OscMessage m = new OscMessage("");
+    OscMessage m = new OscMessage("/filter");
     m.add("user_joined");
     m.add("width: " + (int)c_width);
     m.add("height: " + (int)c_height);
