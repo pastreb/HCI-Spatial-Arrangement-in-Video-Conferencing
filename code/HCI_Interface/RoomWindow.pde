@@ -143,11 +143,14 @@ public class RoomWindow {
     println("typetag: " + buf_m.typetag()); 
     println(buf_m.get(0).stringValue());
     println(buf_m.get(1).stringValue());
-    println(buf_m.get(2).stringValue());
-    println(buf_m.get(3).stringValue());
+    //Get canvas size
+    Rect canvas_bounds = user_canvas.transform.GlobalBounds();
+    float c_height = canvas_bounds.bot - canvas_bounds.top;
+    float c_width = canvas_bounds.right - canvas_bounds.left;
+    float new_x = Float.valueOf(buf_m.get(0).stringValue()); //absolute values
+    float new_y = Float.valueOf(buf_m.get(1).stringValue());
 
-
-    UserJoin(usr_buf, lvl_buf, new PVector(0.5, 0.5), 48);
+    UserJoin(usr_buf, lvl_buf, new PVector(new_x/c_width, new_y/c_height), 48);
 
     buf_m = null;
   }
