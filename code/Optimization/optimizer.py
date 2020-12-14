@@ -58,7 +58,7 @@ def funct(x, states, radien, target): #function to optimize
     #optimize for a point on screen
     diff = np.subtract([x[0], x[1]], [target[0], target[1]])  
     return np.linalg.norm(diff)
-def get_init_states_random(random_samples, screen_size):
+def get_init_states_random(random_samples, screen_size): #legacy
     init_states = np.matrix([   [0, 0], 
                                 [screen_size[0], 0], 
                                 [0, screen_size[1]], 
@@ -71,19 +71,23 @@ def get_init_states_random(random_samples, screen_size):
 def get_init_states_center(A, screen_size):
     ## Triangulate with each node point and use center of triangle as initial condition
     ## Use screen points as additional init conditions
+    ## Super overengineered, but worth it :)
     
     init_states = np.matrix([   [0, 0], 
                                 [screen_size[0], 0], 
                                 [0, screen_size[1]], 
                                 [screen_size[0], screen_size[1]]])
-    if(A.shape[0] > 2): #triangulate only if more than 2 bubbles aviable
+
+    if(len(A.shape) != 1 and A.shape[1] > 2): #triangulate only if more than 2 bubbles available
+        
         points = np.array([0,0])
         points = np.row_stack((points, np.array([screen_size[0], 0])))
         points = np.row_stack((points, np.array([0, screen_size[1]])))
         points = np.row_stack((points, np.array([screen_size[0], screen_size[1]])))
+
         for i in range(A.shape[0]):
             points = np.row_stack((points, np.array([A[i, 0], A[i, 1]])))
-
+            #error
         dict_A = dict(vertices=points)
         mesh = tr.triangulate(dict_A)
 
@@ -97,6 +101,6 @@ def get_init_states_center(A, screen_size):
             y_c = (vertices[triangles[i][0]][1] + vertices[triangles[i][1]][1] + vertices[triangles[i][2]][1])/3.0
             column_to_be_added = np.array([x_c, y_c])
             init_states = np.row_stack((init_states, column_to_be_added))
-
+    
 
     return init_states

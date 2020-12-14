@@ -23,6 +23,8 @@ class App:
         self.minDist = 10
         self.new_bubble_radius = 40
         self.myfont = None
+        
+        self.DEBUG = 0
         ## --- Communcation Protocol
         self.Com = []
  
@@ -34,20 +36,22 @@ class App:
         self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         ## init communcation
         self.Com = OSC()
-        
+        self.Com.start()
         ## import CSV file
         np.resize(self.CSV_matrix, (sum(1 for row in open("input.csv")), 4))
         self.CSV_matrix = np.loadtxt(open("input.csv", "r"), delimiter=";", skiprows=1)
         #optimizer for new position of the bubble
         
         #Find appropraite init states
-        self.init_states = get_init_states_random(self.random_samples, self.size)
+        #self.init_states = get_init_states_random(self.random_samples, self.size)
         self.init_states = get_init_states_center(self.CSV_matrix, self.size)
         #solve
-        #t0 = time.process_time()
+        t0 = time.process_time()
         self.result = optimize_pos(self.CSV_matrix, self.new_bubble_radius, self.target, self.minDist, self.size, self.init_states ) 
-        #print("Optimization time: "+str(time.process_time() - t0))
-        #print(self.result.x)
+
+        if (self.DEBUG): 
+            print("Optimization time: "+str(time.process_time() - t0))
+            print(self.result.x)
         self._running = True
  
     def on_event(self, event):
