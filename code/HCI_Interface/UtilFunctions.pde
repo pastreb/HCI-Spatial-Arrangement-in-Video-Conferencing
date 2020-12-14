@@ -35,7 +35,9 @@ class UtilFunctions extends Component {
     println("Closing Settings");
   }
 
+  private String[] name_list = {"Hugo", "Max", "Veronica", "Marc", "Jessica", "Alice", "Bob", "Charlie", "Sarah", "Anton", "Will", "Jake", "Monica", "Karen"};
+  private String[] img_list = {"pepe.png", "fish.png", "geko.png", "hamster.png", "harold.jpg", "kermit.jpg", "rick.png", "squidward.png", "clint.png", "leo.png"};
   public void CreateUser(RoomWindow rw){
-    rw.UserJoin(new User("Max Mustermann"), 100);
+    rw.UserJoin(new User(name_list[(int)random(name_list.length)], "images/profiles/" + img_list[(int)random(img_list.length)]), 100);
   }
 }

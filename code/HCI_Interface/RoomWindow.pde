@@ -99,7 +99,7 @@ public class RoomWindow {
       TableRow r = table.addRow();
       r.setInt("xpos", (int)(uie.transform.anchor.left * c_width));
       r.setInt("ypos", (int)(uie.transform.anchor.top * c_height));
-      r.setInt("radius", (int)(uie.transform.position.bot));
+      r.setInt("radius", (int)(uie.transform.position.bot) + 16);
     }
 
     saveTable(table, "userpositions.csv");
@@ -108,7 +108,7 @@ public class RoomWindow {
     m.add("user_joined");
     m.add("width: " + (int)c_width);
     m.add("height: " + (int)c_height);
-    m.add("user_radius: 48");
+    m.add("user_radius: 64");
     oscP5.send(m, remote_loc);
   }
 
@@ -117,6 +117,7 @@ public class RoomWindow {
     UIElement uie = new UIElement(this.root.applet, u.getName(), user_canvas.transform, new Rect(-rad, -rad, rad, rad), new Rect(pos.x, pos.y, pos.x, pos.y));
     UserBubble ub;
     if(u.getPic() != null){
+      println(u.getPic());
       ub  = new UserBubble(u.getName(), loadImage(u.getPic()), level);
     }else{
       ub = new UserBubble(u.getName(), null, level);
