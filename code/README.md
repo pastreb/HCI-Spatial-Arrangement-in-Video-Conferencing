@@ -7,5 +7,5 @@
   * ```pip install scipy```
   * ```pip install triangle```
     * If this fails, then install https://visualstudio.microsoft.com/de/visual-cpp-build-tools/
-  * ```py Communication.py```
-  * Open HCI_Interface.pde
+* Run the backend either directly (Communication.py) or also via command line: ```py Communication.py```
+* Run the frontend by opening HCI_Interface.pde
