@@ -242,7 +242,7 @@ The optimization indeed delivers some beautiful results, which we also got to sh
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimizations_results.png" width="800"/>
 
-Since the backend operates entirely independently, it could even be outsourced to a powerful server.
+The optimization takes place in real time but since the backend operates entirely independent, it could even be outsourced to a powerful server.
 
 ### Summary <a name="final"></a>
 At the end of our journey, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
