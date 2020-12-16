@@ -229,10 +229,20 @@ Another brainstorming phase led to the following two main ideas (among others) o
     - Measurements of user input such as the time that passes between clicking a bubble and the button.
     - Heuristics (e.g. “*if the bubble is on the top right corner, the buttons should appear on the side that faces to the middle of the screen.*”)
 
+We decided to keep going with optimizing **Cluttering Prevention** since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user if they join a room. This can be described by the following maths:
+
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_maths.png" alt="Maths behind Optimization" width="800"/>
+
+If a new user joins the video call, the frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python), which itself computes the optimal position for the newly joined user and sends this back to the frontend. Our user interface then renders the new user at the computed location. 
+
+<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_explanation.png" width="800"/>
+
+Since the backend operates entirely independent, it could also be outsourced to a powerful server.
+
+
 ### Final Presentation <a name="final"></a>
 
-TODO
-Describe your high-fidelity manual prototype.  
+TODO  
 Describe your high fideltiy automatic prototype to the problem and the prototype you developed in more detail here.  
 Create and upload a video "deliverables" folder of your final prototype (which will be used in the final presentation) and include the link here.  
 In the code folder, document the readme file with build / run instructions.
