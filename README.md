@@ -26,7 +26,7 @@ How can this be mimicked in online meetings instead of artificial concepts like 
 - [Hifi Prototype](#prototype)
   - [Hifi Manual Prototype](#manual)
   - [Hifi Automatic Prototype](#automatic)
-  - [Final Presentation](#final)
+  - [Summary](#final)
 
 ## Project Description and User Needs <a name="description"></a>
 (Week 2-3)
