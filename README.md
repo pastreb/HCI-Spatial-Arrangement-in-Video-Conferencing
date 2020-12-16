@@ -212,7 +212,7 @@ After adding some mockup profile pictures as well as screenshare- and facecam vi
 ### Hifi Automatic Prototype <a name="automatic"></a>
 (Week 11-13)
 
-Another brainstorming phase led to the following two ideas on how to automatically optimize our hifi prototype:
+Another brainstorming phase led to the following two main ideas (among others) on how to automatically optimize our hifi prototype:
 - **Cluttering Prevention**
   - Our interface gives the user the ability to freely place and (re-)size every bubble.
   - How should the layout look like when a call is entered for the first time (and there are already n participant present)?

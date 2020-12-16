@@ -1,3 +1,5 @@
 # Code build and run instructions
-    TODO
-
+* Install Python 3.9 or newer.
+* ```pip install python-osc```
+* ```py Communication.py```
+* Open HCI_Interface.pde
