@@ -229,24 +229,24 @@ Another brainstorming phase led to the following two main ideas (among others) o
     - Measurements of user input such as the time that passes between clicking a bubble and the button.
     - Heuristics (e.g. “*if the bubble is on the top right corner, the buttons should appear on the side that faces to the middle of the screen.*”)
 
-We decided to keep going with optimizing **Cluttering Prevention** since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user if they join a room. 
+We decided to keep going with optimizing **Cluttering Prevention**, since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user joining a room. 
 
-This can be described by the following maths:
+This can be described by the following maths:<br>
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_maths.png" alt="Maths behind Optimization" width="600"/>
 
-If a new user joins the video call, the frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python), which itself computes the optimal position for the newly joined user and sends this back to the frontend. Our user interface then renders the new user at the computed location. 
+After the joining of a fresh user, the frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python), which itself computes the optimal position for the newly joined user and sends this back to the frontend. The bubble for the new user is then rendered at the computed location. 
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_explanation.png" width="800"/>
 
-The optimization indeed delivers some beautiful results.
+The optimization indeed delivers some beautiful results, which we also got to show in our [final presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Final_Presentation.pdf).
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimizations_results.png" width="800"/>
 
-Since the backend operates entirely independently, it could also be outsourced to a powerful server.
+Since the backend operates entirely independently, it could even be outsourced to a powerful server.
 
-### Final Presentation <a name="final"></a>
+### Summary <a name="final"></a>
+At the end of our journey, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
 
 TODO  
 Describe your high fideltiy automatic prototype to the problem and the prototype you developed in more detail here.  
-Create and upload a video "deliverables" folder of your final prototype (which will be used in the final presentation) and include the link here.  
 In the code folder, document the readme file with build / run instructions.
