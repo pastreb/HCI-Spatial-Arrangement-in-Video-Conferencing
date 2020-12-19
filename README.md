@@ -246,7 +246,3 @@ The optimization takes place in real time but since the backend operates entirel
 
 ### Summary <a name="final"></a>
 At the end of our journey, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
-
-TODO  
-Describe your high fideltiy automatic prototype to the problem and the prototype you developed in more detail here.  
-In the code folder, document the readme file with build / run instructions.
