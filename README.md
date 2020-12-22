@@ -229,12 +229,12 @@ Another brainstorming phase led to the following two main ideas (among others) o
     - Measurements of user input such as the time that passes between clicking a bubble and the button.
     - Heuristics (e.g. “*if the bubble is on the top right corner, the buttons should appear on the side that faces to the middle of the screen.*”)
 
-We decided to keep going with optimizing **Cluttering Prevention**, since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user joining a room. 
+We decided to keep going with optimizing [**Cluttering Prevention**](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/Optimization/optimizer.py), since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user joining a room. 
 
 This can be described by the following maths:<br>
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_maths.png" alt="Maths behind Optimization" width="600"/>
 
-After the joining of a fresh user, the frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python), which itself computes the optimal position for the newly joined user and sends this back to the frontend. The bubble for the new user is then rendered at the computed location. 
+After the joining of a fresh user, the [frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python)](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/HCI_Interface/RoomWindow.pde), which itself computes the optimal position for the newly joined user and [sends this back to the frontend](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/Optimization/Communication.py). The bubble for the new user is then rendered at the computed location. 
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_explanation.png" width="800"/>
 
