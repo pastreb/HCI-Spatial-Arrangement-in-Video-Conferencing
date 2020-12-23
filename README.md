@@ -229,20 +229,29 @@ Another brainstorming phase led to the following two main ideas (among others) o
     - Measurements of user input such as the time that passes between clicking a bubble and the button.
     - Heuristics (e.g. “*if the bubble is on the top right corner, the buttons should appear on the side that faces to the middle of the screen.*”)
 
-We decided to keep going with optimizing [**Cluttering Prevention**](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/Optimization/optimizer.py), since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the screen positions (but not the size) of a new user joining a room. 
+We decided to keep going with optimizing **Cluttering Prevention**, since we considered it the most meaningful optimization that is unique to our application. Furthermore, we settled on optimizing the position on screen (but not the size) of a new user joining a room. <br />
 
-This can be described by the following maths:<br>
+**Optimization**
+A newly entered user triggers a call from the frontend (Processing) to the backend (Python). Processing then sends the screen size and the associated radius to the optimizer program running on Python. Furthermore, a list of all preexisting circles is saved as a CSV file, which is imported by the optimizer as well. <br> 
+After the optimization process, Python calls Processing back and hands in the newly found location of the joined user. <br />
+
+The optimization state are the x and y position of the new bubble. The objective is to minimize the cost by altering the state. The cost function is stated as the euclidian norm of the difference between the state and the target position. Thus the absolute distance between both position vectors. <br>
+The optimization is subject to two non-linear constraints. The first one enforces no overlapping of the new circle with all other exitsing circles. It states that the distance between the position of the new and preexisting circle is larger than both radii together and a fixed threshold.<br>
+The second constraint ensures that the new circle is within the screen bounds. <br> 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_maths.png" alt="Maths behind Optimization" width="600"/>
 
-After the joining of a fresh user, the [frontend (Processing) sends locations and sizes of all the user-bubbles present to the backend (Python)](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/HCI_Interface/RoomWindow.pde), which itself computes the optimal position for the newly joined user and [sends this back to the frontend](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/code/Optimization/Communication.py). The bubble for the new user is then rendered at the computed location. 
-
+A crictical part of the algorithm is to find the global minimum, in other words the best location for the circle with as low computation time as possible. <br>
+The convergence of the solver is strongly dependent on the inital condition (left image). The program needs to be run for multiple inital condition in order to find the global minimum, thus the smalest cost respective the shortest distance to the target. <br>
+First Monte Carlo Sampling has been used to get a list of positions as inital conditions. This approach uses randomly generated samples inside the screen bounds. Many samples ensure the finding of the global minimum. However, this is computational very inefficent and scales exponentialy with the screen size and number of preexisting circles. <br>
+A more sophisticated approach uses the center of triangles produced by a mesh as initial conditions. First the algorithm determines a triangulated mesh with nodes being the center of each preexisting circles (right image). Next, the center of each triangle is being calculated and used as intial condition. This approach ensures an optimal location of each inital condition in minimal time. 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_explanation.png" width="800"/>
 
-The optimization indeed delivers some beautiful results, which we also got to show in our [final presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Final_Presentation.pdf).
+The resulting algorithm is robust and converges in minimal time to an optimal solution. It can handle big differences in sizes and positions of each circle. More results can be seen in our [final presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Final_Presentation.pdf). The computation time is less than 500 ms for around 20 users. However, it does scale linear and not exponential with increasing number of participants. 
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimizations_results.png" width="800"/>
 
-The optimization takes place in real time but since the backend operates entirely independent, it could even be outsourced to a powerful server.
+Since the optimizaion script operates entirely independent, it could be performed entierly remote on another workstation. 
 
 ### Summary <a name="final"></a>
-At the end of our journey, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
+Our program delivers an easy and intuitive way of creating and joining call sessions with many participants. The visual representation helps in assigning rights to each user and the overlall clearness. Participant with adequate priotity level can create and assigns particpant to breakout rooms.
+Last but not least, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
