@@ -250,8 +250,14 @@ The resulting algorithm is robust and converges in minimal time to an optimal so
 
 <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimizations_results.png" width="800"/>
 
-Since the optimizaion script operates entirely independent, it could be performed entierly remote on another workstation. 
-
+Since the optimizaion script operates entirely independent, it could be performed entierly remote on another workstation. <br />
+***Python dependencies installation***
+* Download Python from the [official website](https://www.python.org/)
+* Install package manager [Pip](https://pypi.org/project/pip/)
+* Install [Numpy](https://numpy.org/install/) with Pip
+* Install [Scypi](https://www.scipy.org/install.html) with Pip
+* Install [Triangles](https://pypi.org/project/triangle/) with Pip
+* Install [OSC](https://pypi.org/project/python-osc/) with Pip
 ### Summary <a name="final"></a>
 Our program delivers an easy and intuitive way of creating and joining call sessions with many participants. The visual representation helps in assigning rights to each user and the overlall clearness. Participant with adequate priotity level can create and assigns particpant to breakout rooms.
 Last but not least, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
