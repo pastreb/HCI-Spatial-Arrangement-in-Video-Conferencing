@@ -31,7 +31,7 @@ How can this be mimicked in online meetings instead of artificial concepts like 
 ## Project Description and User Needs <a name="description"></a>
 (Week 2-3)
 
-After a first brainstorming phase, we came up with [Several Questions](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
+After a first brainstorming phase, we came up with [Several Questions](Deliverables/Interview_Needfinding_Questions.pdf) as guidelines for our interviews. 
 
 In our eyes, the key questions are:
 - If you had to do some group work online with 12 people, how would you do that?
@@ -39,13 +39,13 @@ In our eyes, the key questions are:
 - What features are missing in Zoom/Discord/Teams in contrast to meeting in real life?
 - How do you usually decide who gets to talk?
 
-Each of us conducted two to three such interviews (protocols can be found here: [Protocols Cedric](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Cedric.pdf), [Protocols Lukas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Lukas.pdf), [Protocols Pascal](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Pascal.pdf), [Protocols Robin](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Interviewprotokolle_Robin.pdf)).      
+Each of us conducted two to three such interviews (protocols can be found here: [Protocols Cedric](Deliverables/Interviewprotokolle_Cedric.pdf), [Protocols Lukas](Deliverables/Interviewprotokolle_Lukas.pdf), [Protocols Pascal](Deliverables/Interviewprotokolle_Pascal.pdf), [Protocols Robin](Deliverables/Interviewprotokolle_Robin.pdf)).      
 
 ## Ideation <a name="ideation"></a>
 (Weeks 2-4)
 
 ### Needs <a name="needs"></a>
-The interviews resulted in a [Final List of Needs](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Needfinding%20Final.pdf) both for every interviewee and also across all interviewees.
+The interviews resulted in a [Final List of Needs](Deliverables/Needfinding%20Final.pdf) both for every interviewee and also across all interviewees.
 
 These can be summed up:
 - **Simpleness**:
@@ -74,7 +74,7 @@ As a takeaway, our **most important insights** were the following:
 - There should be a better permission/role system within a call.
 
 ### Affinity Diagram <a name="affinity_diagram"></a>
-Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
+Based on these interview outcomes, we created our [Affinity Diagram](img/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
 
 <img src="img/Affinity_Diagram.png" alt="Affinity Diagram" width="500"/>
 
@@ -82,7 +82,7 @@ We will aim on creating an UI that is as beneficial as possible in meeting one o
 
 ### Personas <a name="personas"></a>
 The Affinity diagram then helped us create our three **Personas**, which represent typical users:
-- **Low-level User**: [Karen Smith](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Karen.pdf)
+- **Low-level User**: [Karen Smith](Deliverables/Persona_Karen.pdf)
   - Has never used such technology.
   - User Scenario: 
     - Since the pandemic began she can't visit her friends anymore.
@@ -90,7 +90,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - Thankfully, one of her friends has a husband that works in IT, so they had him set up Zoom for them.
     - If anything does not work, the only way she knows how to get it running again is by restarting the computer.
     <img src="img/Karen.png" alt="Karen Smith" width="80"/>
-- **Casual User**: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
+- **Casual User**: [Silvano da Silva Jovanotti](Deliverables/Persona_%20Average%20User.pdf)
   - Is an average tech-user.
   - User Scenario:
     - Silvano has had a stressful day (again).
@@ -99,7 +99,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - Unfortunately, all participants are late again and he is the one to blame.
     - To his luck, the meeting is working properly and no other errors occur.
     <img src="img/Silvano.png" alt="Silvano da Silva Jovanotti" width="80"/>
-- **Power User**: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
+- **Power User**: [Raphael Yamamoto](Deliverables/Persona_Poweruser.pdf)
   - Studied Computer Science.
   - User Scenario:
     - Rapha, as his friends call him, uses Discord to talk to the other players on their Minecraft server.
@@ -110,7 +110,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     <img src="img/Raphael.png" alt="Raphael Yamamoto" width="120"/>
 
 ### Brainstorming Ideas <a name="brainstorming"></a>
-In another brainstorming phase, we came up with as many [Ideas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Brainstorming.pdf) as possible. Here are some examples:
+In another brainstorming phase, we came up with as many [Ideas](Deliverables/Brainstorming.pdf) as possible. Here are some examples:
 - Level-based permissions:
   - Higher level = higher priority within the call.
   - Unlock additional features when reaching a higher level.
@@ -121,7 +121,7 @@ In another brainstorming phase, we came up with as many [Ideas](https://github.c
   - Similar to desktop icons.
 
 ### Presentation <a name="presentation"></a>
-For the [Presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Ideation_Presentation.pdf), we tried to choose the three ideas that most represent all our different approaches in order to get feedback for any path we could take. 
+For the [Presentation](Deliverables/Ideation_Presentation.pdf), we tried to choose the three ideas that most represent all our different approaches in order to get feedback for any path we could take. 
 The winners (a little more in detail) were:
 - **Level-based Permissions**
   - Give different levels to the participants in the call.
@@ -132,7 +132,7 @@ The winners (a little more in detail) were:
     - Share files/screen.
     - Access different breakout rooms.
   - Lower level participants go through higher level participants to ask questions or get permissions.
-- **[User-specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png)**
+- **[User-specific Conference Arrangement](img/Popup_Avatar_Mockup.png)**
   - Participants appear as bubbles on a canvas (the shape does not really matter).
   - Users can move and scale those bubbles to make their own arrangement.
   - Based on the “rank” of a user, his bubble initially appears larger.
@@ -149,7 +149,7 @@ The winners (a little more in detail) were:
   - It often happens that one gets bored when a video call becomes too long.
     - This idea might help in staying focused and prevent people from doing something else.
     - It also helps detecting inactive users.
-  <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Agar.io_Styled_Arrangement.png" alt="Agar.io Styled Arrangement" width="300"/>
+  <img src="img/Agar.io_Styled_Arrangement.png" alt="Agar.io Styled Arrangement" width="300"/>
     
 ### Lowfi Prototyping <a name="lowfi_prototypes"></a>
 While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
@@ -259,4 +259,4 @@ Since the optimizaion script operates entirely independent, it could be performe
 * Install [OSC](https://pypi.org/project/python-osc/) with Pip
 ### Summary <a name="final"></a>
 Our program delivers an easy and intuitive way of creating and joining call sessions with many participants. The visual representation helps in assigning rights to each user and the overlall clearness. Participant with adequate priotity level can create and assigns particpant to breakout rooms.
-Last but not least, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
+Last but not least, we created a video that describes our Hifi Prototype. It can be found in the [Deliverables](Deliverables/Hifi_Prototype_Video.mp4) (worse quality) as well as on [Youtube](https://www.youtube.com/watch?v=Pxt3dmttFs0&feature=youtu.be).
