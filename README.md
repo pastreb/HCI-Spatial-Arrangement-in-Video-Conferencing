@@ -142,7 +142,7 @@ The winners (a little more in detail) were:
   - Groups could potentially be displayed as clusters connected by a “group bubble”.
   <img src="img/Popup_Avatar_Mockup.png" alt="User-specific Conference Arrangement" width="300"/>
 
-- **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Agar.io_Styled_Arrangement.png)**
+- **[Agar.io Styled Arrangement](img/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea.
   - Participants appear as bubbles on the screen and can “walk” around, using the arrow keys.
   - The voice of people that are closer appears louder.
@@ -153,10 +153,10 @@ The winners (a little more in detail) were:
     
 ### Lowfi Prototyping <a name="lowfi_prototypes"></a>
 While trying to implement some of the feedback we received for the presentation, we created prototypes for the three ideas we presented and an additional one:
-- **[Prototype Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Agario_Pascal.mp4)**
-- **[Prototype Level Based Permission System](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Level-based-system.pdf)**
-- **[Prototype User-Specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Prototype_Arrangement_Robin.mp4)**
-- **[Prototype Stack Based View](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Stack%20Based%20View%20(CW).pdf)**
+- **[Prototype Agar.io Styled Arrangement](Deliverables/Prototype_Agario_Pascal.mp4)**
+- **[Prototype Level Based Permission System](Deliverables/Level-based-system.pdf)**
+- **[Prototype User-Specific Conference Arrangement](Deliverables/Prototype_Arrangement_Robin.mp4)**
+- **[Prototype Stack Based View](Deliverables/Stack%20Based%20View%20(CW).pdf)**
 
 ## Evaluation <a name="evaluation"></a>
 (Weeks 5-7)
@@ -167,14 +167,14 @@ Based on the feedback we received, we decided to merge the ideas of the Level Ba
 - [Prototype B](https://xd.adobe.com/view/99615182-12a9-434b-8e44-f15a70c31556-cc32/grid)
 
 ### User Study <a name="user_study"></a>
-For conducting the user study, we created a [Study Protocol](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Protocol.pdf) and a [Subjective Rating Form](https://docs.google.com/forms/d/e/1FAIpQLSebr7I3G2s7by578MRwiXRlNRDSrXhL84pf3HPX7f1ZPkRodQ/viewform).
+For conducting the user study, we created a [Study Protocol](Deliverables/Study%20Protocol.pdf) and a [Subjective Rating Form](https://docs.google.com/forms/d/e/1FAIpQLSebr7I3G2s7by578MRwiXRlNRDSrXhL84pf3HPX7f1ZPkRodQ/viewform).
 
 The project was explained to the participant as follows: 
 “*We want to adapt the user interface of video call tools such that they become easier to handle while providing more functionality. To do so, we created two prototypes, that we would like to assess now. The prototypes are very basic and do not really implement the functionality but for now we just pretend as if they did so. Subsequently, you will receive some simple tasks for each of the prototypes. As soon as you complete a task, the message “Good Job” appears on the screen.*”
 
 <img src="img/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
 
-In summary, each [Participant](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Demographics.pdf) was asked to perform the following taks on both prototypes while the [Task Completion Time](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User%20Performance.pdf) was measured as a dependent variable:
+In summary, each [Participant](Deliverables/Demographics.pdf) was asked to perform the following taks on both prototypes while the [Task Completion Time](Deliverables/User Performance.pdf) was measured as a dependent variable:
 - “*Create a room and let other people join.*”
 - “*Change another user's level.*”
 - “*Change the position and size of another user.*”
@@ -184,23 +184,23 @@ Our **main goal** was to determine two things:
 - **How easy is it for the participant to make use of the additional functionalities?**
 - **Which prototype is less overwhelming?**
 
-In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we first explain the goals and methodology a little more in detail before we analyze the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
+In our [Study Report](Deliverables/Study Report.pdf) we first explain the goals and methodology a little more in detail before we analyze the [User Performance](Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](Deliverables/Participants_Study_Plots.pdf).
 
 <img src="img/t_test_results.png" alt="Paired t-test-Analysis" width="600"/>
 
-To sum up, we concluded our two prototypes to perform quite similarly. The [Subjective Rating](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Subjective_Rating.pdf) and verbal feedback we received from the participants however cleary exposed Prototype A to be more popular.
+To sum up, we concluded our two prototypes to perform quite similarly. The [Subjective Rating](Deliverables/Subjective_Rating.pdf) and verbal feedback we received from the participants however cleary exposed Prototype A to be more popular.
 
 <img src="img/subjective_rating_diagrams.png" alt="Subjective Rating Diagrams" width="600"/>
 
 ## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
 
-Following the evaluation of our user study, we decided to keep going with combining our basic approaches of the [Level Based Permission System](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Level-based-system.pdf) and the [User-Specific Conference Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png), as both these ideas met with approval among the participants. Furthermore, the design should be mostly inspired by [Prototype A](https://xd.adobe.com/view/2b2d7ce0-21a7-4684-ac29-a956077592ca-7e7e/grid).
+Following the evaluation of our user study, we decided to keep going with combining our basic approaches of the [Level Based Permission System](Deliverables/Level-based-system.pdf) and the [User-Specific Conference Arrangement](img/Popup_Avatar_Mockup.png), as both these ideas met with approval among the participants. Furthermore, the design should be mostly inspired by [Prototype A](https://xd.adobe.com/view/2b2d7ce0-21a7-4684-ac29-a956077592ca-7e7e/grid).
 
 ### Hifi Manual Prototype <a name="manual"></a>
 (Week 7-10)
 
-We were finally set up to start building the [Frontend](https://github.com/eth-ait/hci-project-hci2020-group-08/tree/2020/code/HCI_Interface) of our hifi prototype using Processing. The focus on size/position/appearance of bubbles (that represent each participant) and the desire of giving the user the ability to change these on his own (one of our main goals) could not be technically met by any standard library for UI, which is why we decided to create our own solution.
+We were finally set up to start building the [Frontend](code/HCI_Interface) of our hifi prototype using Processing. The focus on size/position/appearance of bubbles (that represent each participant) and the desire of giving the user the ability to change these on his own (one of our main goals) could not be technically met by any standard library for UI, which is why we decided to create our own solution.
 
 To achieve this goal, the user requires the ability to resize the program window freely. This is important because of the space he needs to move other users around and resize them. Our own library supports not only that but also further functionalities such as breakout rooms, screen sharing and a level based permission system, which is our second main goal. Finally, we also need to keep in mind that our interface should be able to communicate with the backend that will be coded later.
 
@@ -245,7 +245,7 @@ First Monte Carlo Sampling has been used to get a list of positions as inital co
 A more sophisticated approach uses the center of triangles produced by a mesh as initial conditions. First the algorithm determines a triangulated mesh with nodes being the center of each preexisting circles (right image). Next, the center of each triangle is being calculated and used as intial condition. This approach ensures an optimal location of each inital condition in minimal time. 
 <img src="img/optimization_explanation.png" width="800"/>
 
-The resulting algorithm is robust and converges in minimal time to an optimal solution. It can handle big differences in sizes and positions of each circle. More results can be seen in our [final presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Final_Presentation.pdf). The computation time is less than 500 ms for around 20 users. However, it does scale linear and not exponential with increasing number of participants. 
+The resulting algorithm is robust and converges in minimal time to an optimal solution. It can handle big differences in sizes and positions of each circle. More results can be seen in our [final presentation](Deliverables/Final_Presentation.pdf). The computation time is less than 500 ms for around 20 users. However, it does scale linear and not exponential with increasing number of participants. 
 
 <img src="img/optimizations_results.png" width="800"/>
 
