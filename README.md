@@ -76,8 +76,7 @@ As a takeaway, our **most important insights** were the following:
 ### Affinity Diagram <a name="affinity_diagram"></a>
 Based on these interview outcomes, we created our [Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Affinity_Diagram.png) (which can also be found on [Miro](https://miro.com/app/board/o9J_kjg1ZWo=/)). 
 
-<!--- ![Affinity Diagram](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Affinity_Diagram.png "Affinity Diagram")) -->
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Affinity_Diagram.png" alt="Affinity Diagram" width="500"/>
+<img src="img/Affinity_Diagram.png" alt="Affinity Diagram" width="500"/>
 
 We will aim on creating an UI that is as beneficial as possible in meeting one or multiple of these needs.
 
@@ -90,7 +89,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - They use Zoom to chat with each other and have a drink, when the children finally leave for their afternoon classes.
     - Thankfully, one of her friends has a husband that works in IT, so they had him set up Zoom for them.
     - If anything does not work, the only way she knows how to get it running again is by restarting the computer.
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Karen.png" alt="Karen Smith" width="80"/>
+    <img src="img/Karen.png" alt="Karen Smith" width="80"/>
 - **Casual User**: [Silvano da Silva Jovanotti](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_%20Average%20User.pdf)
   - Is an average tech-user.
   - User Scenario:
@@ -99,7 +98,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - He's eager to head home to his favourite sofa and watch his team win the football cup tonight.
     - Unfortunately, all participants are late again and he is the one to blame.
     - To his luck, the meeting is working properly and no other errors occur.
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Silvano.png" alt="Silvano da Silva Jovanotti" width="80"/>
+    <img src="img/Silvano.png" alt="Silvano da Silva Jovanotti" width="80"/>
 - **Power User**: [Raphael Yamamoto](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Persona_Poweruser.pdf)
   - Studied Computer Science.
   - User Scenario:
@@ -108,7 +107,7 @@ The Affinity diagram then helped us create our three **Personas**, which represe
     - Currently, they are working on a big project, and they are trying to coordinate with 24 different people.
     - He grabs an energy drink.
     - It's a bit confusing with everyone in the same voice channel, even though people are distributed all over the map ingame.
-    <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Raphael.png" alt="Raphael Yamamoto" width="120"/>
+    <img src="img/Raphael.png" alt="Raphael Yamamoto" width="120"/>
 
 ### Brainstorming Ideas <a name="brainstorming"></a>
 In another brainstorming phase, we came up with as many [Ideas](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Brainstorming.pdf) as possible. Here are some examples:
@@ -141,7 +140,7 @@ The winners (a little more in detail) were:
   - Facecam and screen share are displayed in the bubble.
     - This might cause it to change its shape.
   - Groups could potentially be displayed as clusters connected by a “group bubble”.
-  <img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Popup_Avatar_Mockup.png" alt="User-specific Conference Arrangement" width="300"/>
+  <img src="img/Popup_Avatar_Mockup.png" alt="User-specific Conference Arrangement" width="300"/>
 
 - **[Agar.io Styled Arrangement](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Agar.io_Styled_Arrangement.png)**
   - More of a fun idea.
@@ -173,7 +172,7 @@ For conducting the user study, we created a [Study Protocol](https://github.com/
 The project was explained to the participant as follows: 
 “*We want to adapt the user interface of video call tools such that they become easier to handle while providing more functionality. To do so, we created two prototypes, that we would like to assess now. The prototypes are very basic and do not really implement the functionality but for now we just pretend as if they did so. Subsequently, you will receive some simple tasks for each of the prototypes. As soon as you complete a task, the message “Good Job” appears on the screen.*”
 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
+<img src="img/Midfi_Prototypes.png" alt="Midfi Prototypes" width="500"/>
 
 In summary, each [Participant](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Demographics.pdf) was asked to perform the following taks on both prototypes while the [Task Completion Time](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User%20Performance.pdf) was measured as a dependent variable:
 - “*Create a room and let other people join.*”
@@ -187,11 +186,11 @@ Our **main goal** was to determine two things:
 
 In our [Study Report](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Study%20Report.pdf) we first explain the goals and methodology a little more in detail before we analyze the [User Performance](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/User_Performance_evaluation.jasp). To compare the effect of the prototype on task completion time, we performed a [Paired t-test Analysis](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Participants_Study_Plots.pdf).
 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/t_test_results.png" alt="Paired t-test-Analysis" width="600"/>
+<img src="img/t_test_results.png" alt="Paired t-test-Analysis" width="600"/>
 
 To sum up, we concluded our two prototypes to perform quite similarly. The [Subjective Rating](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Subjective_Rating.pdf) and verbal feedback we received from the participants however cleary exposed Prototype A to be more popular.
 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/subjective_rating_diagrams.png" alt="Subjective Rating Diagrams" width="600"/>
+<img src="img/subjective_rating_diagrams.png" alt="Subjective Rating Diagrams" width="600"/>
 
 ## Hifi Prototype <a name="prototype"></a>
 (Weeks 8-14)
@@ -207,7 +206,7 @@ To achieve this goal, the user requires the ability to resize the program window
 
 After adding some mockup profile pictures as well as screenshare- and facecam videos, our **Hifi Prototype** was ready to be presented once more:
 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/hifi_prototype.png" alt="Hifi Prototype Interface" width="800"/>
+<img src="img/hifi_prototype.png" alt="Hifi Prototype Interface" width="800"/>
 
 ### Hifi Automatic Prototype <a name="automatic"></a>
 (Week 11-13)
@@ -238,17 +237,17 @@ After the optimization process, Python calls Processing back and hands in the ne
 The optimization state are the x and y position of the new bubble. The objective is to minimize the cost by altering the state. The cost function is stated as the euclidian norm of the difference between the state and the target position. Thus the absolute distance between both position vectors. <br>
 The optimization is subject to two non-linear constraints. The first one enforces no overlapping of the new circle with all other exitsing circles. It states that the distance between the position of the new and preexisting circle is larger than both radii together and a fixed threshold.<br>
 The second constraint ensures that the new circle is within the screen bounds. <br> 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_maths.png" alt="Maths behind Optimization" width="600"/>
+<img src="img/optimization_maths.png" alt="Maths behind Optimization" width="600"/>
 
 A crictical part of the algorithm is to find the global minimum, in other words the best location for the circle with as low computation time as possible. <br>
 The convergence of the solver is strongly dependent on the inital condition (left image). The program needs to be run for multiple inital condition in order to find the global minimum, thus the smalest cost respective the shortest distance to the target. <br>
 First Monte Carlo Sampling has been used to get a list of positions as inital conditions. This approach uses randomly generated samples inside the screen bounds. Many samples ensure the finding of the global minimum. However, this is computational very inefficent and scales exponentialy with the screen size and number of preexisting circles. <br>
 A more sophisticated approach uses the center of triangles produced by a mesh as initial conditions. First the algorithm determines a triangulated mesh with nodes being the center of each preexisting circles (right image). Next, the center of each triangle is being calculated and used as intial condition. This approach ensures an optimal location of each inital condition in minimal time. 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimization_explanation.png" width="800"/>
+<img src="img/optimization_explanation.png" width="800"/>
 
 The resulting algorithm is robust and converges in minimal time to an optimal solution. It can handle big differences in sizes and positions of each circle. More results can be seen in our [final presentation](https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/Deliverables/Final_Presentation.pdf). The computation time is less than 500 ms for around 20 users. However, it does scale linear and not exponential with increasing number of participants. 
 
-<img src="https://github.com/eth-ait/hci-project-hci2020-group-08/blob/2020/img/optimizations_results.png" width="800"/>
+<img src="img/optimizations_results.png" width="800"/>
 
 Since the optimizaion script operates entirely independent, it could be performed entierly remote on another workstation. <br />
 ***Python dependencies installation***
